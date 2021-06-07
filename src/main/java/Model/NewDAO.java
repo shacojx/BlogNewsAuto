@@ -148,6 +148,30 @@ public class NewDAO {
         }
         return null;
     }
+    
+    public ArrayList<New> getTop4News() throws SQLException {
+
+        try {
+            String query = "SELECT * FROM `blogauto`.`news` ORDER BY date desc LIMIT 4;";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            ArrayList<New> list_new = new ArrayList<>();
+            while (rs.next()) {
+                New ne = new New(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                list_new.add(ne);
+            }
+            return list_new;
+        } catch (Exception ex) {
+            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return null;
+    }
 
     public void DeleteNewByID(String id) throws SQLException, ClassNotFoundException {
         String query = "DELETE FROM `blogauto`.`news` WHERE `id`=?;";

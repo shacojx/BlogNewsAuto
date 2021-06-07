@@ -107,6 +107,30 @@
         <servlet-name>TvNews</servlet-name>
         <servlet-class>News.TvNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Trailers</servlet-name>
+        <servlet-class>News.Trailers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reviews</servlet-name>
+        <servlet-class>News.Reviews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Interviews</servlet-name>
+        <servlet-class>News.Interviews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Netflix</servlet-name>
+        <servlet-class>News.Netflix</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VideoGames</servlet-name>
+        <servlet-class>News.VideoGames</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewDetail</servlet-name>
+        <servlet-class>News.NewDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -194,6 +218,30 @@
     <servlet-mapping>
         <servlet-name>TvNews</servlet-name>
         <url-pattern>/TvNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Trailers</servlet-name>
+        <url-pattern>/Trailers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reviews</servlet-name>
+        <url-pattern>/Reviews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Interviews</servlet-name>
+        <url-pattern>/Interviews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Netflix</servlet-name>
+        <url-pattern>/Netflix</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VideoGames</servlet-name>
+        <url-pattern>/VideoGames</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewDetail</servlet-name>
+        <url-pattern>/NewDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

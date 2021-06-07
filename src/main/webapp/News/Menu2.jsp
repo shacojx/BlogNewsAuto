@@ -22,9 +22,9 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/News/css/style.css"/>
-        
-       
-        
+
+
+
     </head>
     <body>
 
@@ -38,7 +38,7 @@
                         <!-- logo -->
                         <div class="nav-logo ">
                             <a href="${pageContext.request.contextPath}/News" class="logo"><img style="padding-top: 5%;
-    padding-bottom: 1%;" class="img-responsive" src="${pageContext.request.contextPath}/News/img/logox.PNG" alt=""></a>
+                                                                                                padding-bottom: 1%;" class="img-responsive" src="${pageContext.request.contextPath}/News/img/logox.PNG" alt=""></a>
                         </div>
                         <!-- /logo -->
 
@@ -109,6 +109,22 @@
                 <!-- Aside Nav -->
             </div>
             <!-- /Nav -->
+            <!-- Page Header -->
+            <div id="post-header" class="page-header">
+                <div class="background-img" style="background-image: url('${pageContext.request.contextPath}/News/img/post-page.jpg');"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="post-meta">                    
+                                <span class="post-category cat-1" href="${pageContext.request.contextPath}/NewWorld"><c:out value = "${Ne.type_new}"/></span>
+                                <span class="post-date"><c:out value = "${Ne.date}"/></span>
+                            </div>
+                            <h1><c:out value = "${Ne.title}"/></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Page Header -->
         </header>
         <!-- /Header -->
         <!-- jQuery Plugins -->
