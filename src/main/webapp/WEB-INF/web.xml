@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <welcome-file-list>
-        <welcome-file>NewSecurity</welcome-file>
+        <welcome-file>News</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>RouterFilter</filter-name>
@@ -79,6 +79,34 @@
         <servlet-name>ListNews</servlet-name>
         <servlet-class>Controller.Blog.ListNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteNews</servlet-name>
+        <servlet-class>Controller.Blog.DeleteNews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditNews</servlet-name>
+        <servlet-class>Controller.Blog.EditNews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateNews</servlet-name>
+        <servlet-class>Controller.Blog.UpdateNews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCover</servlet-name>
+        <servlet-class>Controller.Blog.UpdateCover</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>News</servlet-name>
+        <servlet-class>News.News</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MovieNews</servlet-name>
+        <servlet-class>News.MovieNews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TvNews</servlet-name>
+        <servlet-class>News.TvNews</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -138,6 +166,34 @@
     <servlet-mapping>
         <servlet-name>ListNews</servlet-name>
         <url-pattern>/ListNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNews</servlet-name>
+        <url-pattern>/DeleteNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditNews</servlet-name>
+        <url-pattern>/EditNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateNews</servlet-name>
+        <url-pattern>/UpdateNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCover</servlet-name>
+        <url-pattern>/UpdateCover</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>News</servlet-name>
+        <url-pattern>/News</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieNews</servlet-name>
+        <url-pattern>/MovieNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TvNews</servlet-name>
+        <url-pattern>/TvNews</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

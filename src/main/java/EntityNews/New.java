@@ -5,8 +5,6 @@
  */
 package EntityNews;
 
-import java.sql.Date;
-
 /**
  *
  * @author Admin
@@ -33,6 +31,17 @@ public class New {
         this.type_new = type_new;
         this.cover = cover;
     }
+
+    public New(String id, String title, String content, String type_new, String cover) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.type_new = type_new;
+        this.cover = cover;
+    }
+
+    
+    
 
     public String getId() {
         return id;

@@ -13,7 +13,6 @@ import Model.NewDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShacoJX
  */
-public class UpNews extends HttpServlet {
+public class UpdateNews extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,9 +39,9 @@ public class UpNews extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Cookie[] listCookie = request.getCookies();
+             Cookie[] listCookie = request.getCookies();
             String user = "";
             String pass = "";
             for (Cookie o : listCookie) {
@@ -58,35 +57,23 @@ public class UpNews extends HttpServlet {
             Account a = null;
             if (loginD.checkLogin(aes.decrypt(user), aes.decrypt(pass)) == null) {
                 response.sendRedirect("/Login/Login.jsp");
-            } else {
-                String title = request.getParameter("title");
-                String content = request.getParameter("content");
-                String type_new = request.getParameter("type_new");
-                String cover = request.getParameter("cover");
-                String des = "...";
-                content = content.replaceAll("<script>", "%3Cscript%3E");
-                content = content.replaceAll("</script>", "%3C/script%3E");
-                content = content.replaceAll("onerror", "");
-                content = content.replaceAll("<script", "%3Cscript");
-                content = content.replace("<img", "<img class=\"img-responsive\" ");
-                if (title.length() == 0 || content.length() == 0 
-                        || type_new.length() == 0 || cover.length() == 0) {
-                    request.setAttribute("mess", "<p style=\"color: red;\">Thêm Bài Viết Thất Bại, Không được bỏ trống các trường bắt buộc (có icon khóa)</p>");
-                    request.getRequestDispatcher("/FRS/ManagerNews/UpNews.jsp").forward(request, response);
+            }else {
+                String id = request.getParameter("id");
+                if (id == null || id.length() == 0) {
+                    response.sendRedirect("/View/403.jsp");
                 } else {
-                    java.util.Date date1 = new java.util.Date();
-                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String startDate = sdf1.format(date1);
-                    String id = startDate.replaceAll(" ", "");
-                    NewDAO nedao = new NewDAO();
-                    New ne = new New(id, title, des, content, startDate, type_new, cover);
-                    nedao.insertNews(ne);
-                    request.setAttribute("mess", "<p style=\"color: #3ac33ad1;\">Thêm Bài Viết Thành Công</p>");
-                    request.getRequestDispatcher("/FRS/ManagerNews/UpNews.jsp").forward(request, response);
+                    NewDAO newdao = new NewDAO();
+                    String title = request.getParameter("title");
+                    String cover = request.getParameter("cover");
+                    String type = request.getParameter("type_new");
+                    String content = request.getParameter("content");
+                    New ne = new New(id, title, content, type, cover);
+                    newdao.Update(ne);
+                    request.getRequestDispatcher("/ListNews").forward(request, response);                  
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UpNews.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateNews.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -117,7 +104,7 @@ public class UpNews extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+         request.setCharacterEncoding("UTF-8");
         processRequest(request, response);
     }
 

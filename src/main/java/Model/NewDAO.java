@@ -51,7 +51,7 @@ public class NewDAO {
             conn.close();
         }
     }
-    
+
     public New getNewById(String id) throws SQLException {
         try {
             String query = "SELECT * FROM `blogauto`.`news` WHERE `id` = ?";
@@ -73,7 +73,7 @@ public class NewDAO {
         }
         return null;
     }
-    
+
     public ArrayList<New> getPaggingAll(int pageIndex) throws SQLException {
         int index = (pageIndex - 1) * 6;
         try {
@@ -98,7 +98,7 @@ public class NewDAO {
         }
         return null;
     }
-    
+
     public ArrayList<New> getPaggingByType(int pageIndex, String type) throws SQLException {
         int index = (pageIndex - 1) * 6;
         try {
@@ -124,11 +124,11 @@ public class NewDAO {
         }
         return null;
     }
-    
+
     public ArrayList<New> getTop6News() throws SQLException {
 
         try {
-            String query = "SELECT * FROM `blogauto`.`news` ORDER BY date desc LIMIT 6;";
+            String query = "SELECT * FROM `blogauto`.`news` ORDER BY date desc LIMIT 8;";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -148,9 +148,9 @@ public class NewDAO {
         }
         return null;
     }
-    
-     public void DeleteNewByID(String id) throws SQLException, ClassNotFoundException {
-        String query = "DELETE FROM `blogauto`.`news` WHERE  `id`=?;";
+
+    public void DeleteNewByID(String id) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM `blogauto`.`news` WHERE `id`=?;";
         conn = new DBContext().getConnection();
         ps = conn.prepareStatement(query);
         ps.setString(1, id);
@@ -158,7 +158,69 @@ public class NewDAO {
         ps.close();
         conn.close();
     }
+
+    public void Update(New a) throws SQLException {
+        try {
+            String query = "UPDATE `blogauto`.`news` SET `title` = ?, `context` = ?, `type` =?, `cover`=? WHERE `id`=?;";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, a.getTitle());
+            ps.setString(2, a.getContent());
+            ps.setString(3, a.getType_new());
+            ps.setString(4, a.getCover());
+            ps.setString(5, a.getId());
+            ps.executeUpdate();
+            rs = ps.getGeneratedKeys();
+        } catch (Exception ex) {
+            Logger.getLogger(AccDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+    }
+    
+    public int count() throws SQLException {
+        try {
+            String query = "SELECT COUNT(*) FROM `blogauto`.`news`";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return 0;
+    }
+    
+    public int countByType(String type) throws SQLException {
+        try {
+            String query = "SELECT COUNT(*) FROM `blogauto`.`news` where `type`=?;";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, type);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return 0;
+    }
     
     
     
+
 }

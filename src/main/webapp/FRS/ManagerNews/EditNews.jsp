@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.util.List"%>
+
 <%@page import="Entity.Account"%>
 <%@page import="Model.LoginDAO"%>
 <%@page import="Controller.XuLy.AES"%>
@@ -40,6 +42,9 @@
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+        
+        <!-- summernote -->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/AdminLTE/plugins/summernote/summernote-bs4.min.css">
 
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -65,12 +70,12 @@
             } else {
                 a = loginD.checkLogin(aes.decrypt(user), aes.decrypt(pass));
                 ulogin = aes.decrypt(user);
-               
+
             }
 
 
         %>
-        <c:set var = "listnews" scope = "request" value = "active"/>
+        
         <div class="wrapper">
 
             <jsp:include page="../Menu/Menu.jsp" />
@@ -87,7 +92,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/FRS/world.jsp">Home</a></li>
-                                    <li class="breadcrumb-item active">Danh sách tin tức</li>
+                                    <li class="breadcrumb-item active">Sửa Tin Tức</li>
                                 </ol>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
@@ -101,79 +106,94 @@
                         <!-- Small boxes (Stat box) -->
 
                         <div class="row">
-                            ${mess}
-                        </div>
-
-                        <!-- /.row -->
-
-                        <div class="row">
                             <div class="col-12">
+                                <!-- general form elements -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Danh sách người đăng ký cần duyệt</h3>
+                                        <h3 class="card-title">Sửa Tin Tức</h3>
+                                    </div>
+                                    <!-- /.card-header -->
 
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                                <i class="fas fa-minus"></i></button>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            ${mess}
                                         </div>
                                     </div>
-                                    <div class="card-body p-0">
-                                        <table class="table table-striped projects">
-                                            <thead>
-                                                <tr>
-                                                    
-                                                    <th style="width: 50%">
-                                                        Tiêu Đề
-                                                    </th>
-                                                    <th style="width: 15%">
-                                                        Thể Loại
-                                                    </th>
-                                                    <th style="width: 15%">
-                                                        Ngày
-                                                    </th>
-                                                    
-                                                    <th style="width: 20%">
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${listNews}" var="i">
-                                                    <tr>
-                                                        
-                                                        
-                                                        <td>
-                                                            <ul class="list-inline">
-                                                                <span>${i.title}</span>
+                                    <!-- form start -->
+                                    
 
-                                                            </ul>
-                                                        </td>
-                                                        <td class="project_progress">
-                                                            <span>${i.type_new}</span>
-                                                        </td>
-                                                        <td class="project-state">
-                                                            <span>${i.date}</span>
-                                                        </td>
-                                                        
-                                                        <td class="project-actions text-right">
-                                                            <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/EditNews?id=${i.id}">
-                                                                <i class="fas fa-folder">
-                                                                </i>
-                                                                Sửa
-                                                            </a>                   
-                                                            <a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/DeleteNews?id=${i.id}">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Xóa
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
+                                    <form role="form">
+                                        <div class="card-body">
 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"></label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        ${message}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </form>
+                                    <form role="form" style="height: 200px;">
+                                        <div class="card-body">
+
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1"></label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <img src="${name_file_cover}" style=" height: 200px; width: auto;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </form>
+
+
+
+                                    <!-- form start -->
+                                    <form role="form" action="${pageContext.request.contextPath}/UpdateNews?id=${newsid.id}" method="post">
+                                        <div class="card-body">
+
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Tiêu Đề</label>
+                                                <input name="title" type="text" class="form-control" id="exampleInputFile" value="${newsid.title}">
+                                            </div>
+                                            <input type="hidden" name="cover" value="${name_file_cover}">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Loại Tin Tức</label>
+                                                <select name="type_new" id="country" class="form-control">
+                                                    <option>${newsid.type_new}</option>
+                                                    <option>Movie News</option>
+                                                    <option>TV News</option>
+                                                    <option>Trailers</option>
+                                                    <option>Reviews</option>
+                                                    <option>Netflix</option>
+                                                    <option>Video Games</option>
+                                                    <option>Interviews</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Nội Dung</label>
+                                                <textarea name="content" type="text" id="summernote"></textarea>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Sửa Bài Viết</button>
+                                        </div>
+                                    </form>
                                 </div>
+                                <!-- /.card -->
                             </div>
+
                         </div>
 
 
@@ -193,7 +213,8 @@
         <!-- ./wrapper -->
 
 
-
+        
+        <script src="${pageContext.request.contextPath}/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/AdminLTE/plugins/jquery/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -228,5 +249,18 @@
         <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/demo.js"></script>
+        <script>
+            $(function () {
+                // Summernote
+                $('#summernote').summernote()
+
+                // CodeMirror
+                CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                    mode: "htmlmixed",
+                    theme: "monokai"
+                });
+            })
+        </script>
     </body>
 </html>
+

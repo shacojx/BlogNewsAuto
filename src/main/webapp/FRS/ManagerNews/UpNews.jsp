@@ -42,7 +42,7 @@
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-        <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+        
         <!-- summernote -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/AdminLTE/plugins/summernote/summernote-bs4.min.css">
 
@@ -233,12 +233,7 @@
         <!-- ./wrapper -->
 
 
-        <script type="text/javascript">
-            CKEDITOR.replace('noidung', {
-                height: 600,
-                filebrowserBrowseUrl: '${pageContext.request.contextPath}/QuanTriBlog/upload.jsp'
-            });
-        </script>
+        
         <script src="${pageContext.request.contextPath}/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath}/AdminLTE/plugins/jquery/jquery.min.js"></script>

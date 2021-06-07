@@ -147,7 +147,7 @@
 
                         <li class="nav-header">Tin Tức</li>
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/NewSecurity" class="nav-link">
+                            <a href="${pageContext.request.contextPath}/News" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
                                 <p>Tin Tức</p>
                             </a>
