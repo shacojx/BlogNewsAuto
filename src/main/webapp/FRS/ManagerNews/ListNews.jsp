@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Model.VisiterDAO"%>
 <%@page import="Entity.Account"%>
 <%@page import="Model.LoginDAO"%>
 <%@page import="Controller.XuLy.AES"%>
@@ -65,7 +66,7 @@
             } else {
                 a = loginD.checkLogin(aes.decrypt(user), aes.decrypt(pass));
                 ulogin = aes.decrypt(user);
-               
+
             }
 
 
@@ -100,6 +101,8 @@
                     <div class="container-fluid">
                         <!-- Small boxes (Stat box) -->
 
+
+
                         <div class="row">
                             ${mess}
                         </div>
@@ -121,26 +124,30 @@
                                         <table class="table table-striped projects">
                                             <thead>
                                                 <tr>
-                                                    
-                                                    <th style="width: 50%">
+
+                                                    <th style="width: 40%">
                                                         Tiêu Đề
                                                     </th>
-                                                    <th style="width: 15%">
+                                                    <th style="width: 15%;">
                                                         Thể Loại
                                                     </th>
-                                                    <th style="width: 15%">
+                                                    <th style="width: 15%;">
                                                         Ngày
                                                     </th>
-                                                    
+                                                    <th style="width: 10%;">
+                                                        Lượt xem
+                                                    </th>
+
                                                     <th style="width: 20%">
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${listNews}" var="i">
+
+                                                <c:forEach items="${listxxx}" var="i">
                                                     <tr>
-                                                        
-                                                        
+
+
                                                         <td>
                                                             <ul class="list-inline">
                                                                 <span>${i.title}</span>
@@ -148,12 +155,15 @@
                                                             </ul>
                                                         </td>
                                                         <td class="project_progress">
-                                                            <span>${i.type_new}</span>
+                                                            <span>${i.type}</span>
                                                         </td>
-                                                        <td class="project-state">
+                                                        <td class="project_progress">
                                                             <span>${i.date}</span>
                                                         </td>
-                                                        
+                                                        <td class="project_progress">
+                                                            <span>${i.view}</span>
+                                                        </td>
+
                                                         <td class="project-actions text-right">
                                                             <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/EditNews?id=${i.id}">
                                                                 <i class="fas fa-folder">
@@ -177,11 +187,66 @@
                         </div>
 
 
+                        <div class="container">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">      
+                                        <c:if test = "${index == 1 && end > 3}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                            <c:forEach begin="${index}" end="${index+1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index != 1 && index != end && index >= 4 && index < end - 3}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index != 1 && index != end && index <= 3}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index >= end -2 && index < end && index > 3 }">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index == end && index == 1}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">${index}</a></li>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index > end && end != 0}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                        <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}">Not Fond</a></li>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+                                        <c:if test = "${index == end && index != 1}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
+                                            <c:forEach begin="${index-1}" end="${index}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
+                                        </c:if>
+
+                                </ul>
+                            </nav>
+                        </div>
+
+
                     </div><!-- /.container-fluid -->
                 </section>
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
+
             <jsp:include page="../Menu/Footer.jsp" />
 
             <!-- Control Sidebar -->

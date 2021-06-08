@@ -11,18 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!-- Google font -->
-        <link href="${pageContext.request.contextPath}/News/local.css" rel="stylesheet"> 
-
-        <!-- Bootstrap -->
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/News/css/bootstrap.min.css"/>
-
-        <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/News/css/font-awesome.min.css">
-
-        <!-- Custom stlylesheet -->
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/News/css/style.css"/>
-
+        
 
 
     </head>
@@ -78,7 +67,7 @@
                     <!-- nav -->
                     <div class="section-row">
                         <ul class="nav-aside-menu">
-                            <li><a href="${pageContext.request.contextPath}/News" class="logo"><img src="${pageContext.request.contextPath}/News/img/logo-cong-ty-funtap.jpg" alt=""></a></li>
+                            <li><a href="${pageContext.request.contextPath}/News" class="logo"><img src="${pageContext.request.contextPath}/News/img/logox.PNG" alt=""></a></li>
                             <li><a href="${pageContext.request.contextPath}/MovieNews">MOVIE NEWS</a></li>
                             <li><a href="${pageContext.request.contextPath}/TvNews">TV NEWS</a></li>
                             <li><a href="${pageContext.request.contextPath}/Trailers">TRAILERS</a></li>
@@ -111,9 +100,6 @@
             <!-- /Nav -->
         </header>
         <!-- /Header -->
-        <!-- jQuery Plugins -->
-        <script src="${pageContext.request.contextPath}/News/js/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/News/js/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/News/js/main.js"></script>
+        
     </body>
 </html>

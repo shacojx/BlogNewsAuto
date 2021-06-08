@@ -5,11 +5,15 @@
  */
 package News;
 
+import Controller.XuLy.GeoIP;
 import EntityNews.New;
+import EntityNews.Visiter;
 import Model.NewDAO;
+import Model.VisiterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,9 +40,19 @@ public class News extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            GeoIP geo = new GeoIP();
             String userIpAddress = request.getRemoteAddr();
+            String location = geo.getLocation(userIpAddress);
+            java.util.Date date1 = new java.util.Date();
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String startDate = sdf1.format(date1);
+            String id_news = "trangchu_0";
+            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news);
+            VisiterDAO vidao = new VisiterDAO();
+            vidao.insert(vis);
+
             String indexPage = request.getParameter("index");
             int index = 1;
             if (indexPage != null) {
@@ -53,9 +67,9 @@ public class News extends HttpServlet {
 
             ArrayList<New> listPaging = ndao.getPaggingAll(index);
             ArrayList<New> listtop6 = ndao.getTop6News();
-            
-            System.out.println("ip client: "+userIpAddress);
-            
+
+            System.out.println("ip client: " + userIpAddress);
+
             request.setAttribute("end", endPage);
             request.setAttribute("index", index);
             request.setAttribute("listNew", listPaging);

@@ -5,11 +5,15 @@
  */
 package News;
 
+import Controller.XuLy.GeoIP;
 import EntityNews.New;
+import EntityNews.Visiter;
 import Model.NewDAO;
+import Model.VisiterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,9 +42,21 @@ public class NewDetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
+
+            String id = request.getParameter("id");         
             NewDAO nedao = new NewDAO();
             New ne = nedao.getNewById(id);
+            
+            GeoIP geo = new GeoIP();
+            String userIpAddress = request.getRemoteAddr();
+            String location = geo.getLocation(userIpAddress);
+            java.util.Date date1 = new java.util.Date();
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String startDate = sdf1.format(date1);
+            Visiter vis = new Visiter(userIpAddress, location, startDate, id);
+            VisiterDAO vidao = new VisiterDAO();
+            vidao.insert(vis);
+            
             ArrayList<New> listtop4 = nedao.getTop4News();
             request.setAttribute("Listtop4", listtop4);
              request.setAttribute("Ne", ne);

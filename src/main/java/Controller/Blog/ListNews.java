@@ -7,9 +7,11 @@ package Controller.Blog;
 
 import Controller.XuLy.AES;
 import Entity.Account;
+import EntityNews.ListNewtmp;
 import EntityNews.New;
 import Model.LoginDAO;
 import Model.NewDAO;
+import Model.VisiterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -40,7 +42,7 @@ public class ListNews extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Cookie[] listCookie = request.getCookies();
             String user = "";
@@ -62,9 +64,30 @@ public class ListNews extends HttpServlet {
                 response.sendRedirect(contextPath + "/Login/Login.jsp");
             } else {
                 NewDAO newdao = new NewDAO();
+                VisiterDAO vidao = new VisiterDAO();
+                String indexPage = request.getParameter("index");
                 int index = 1;
+                if (indexPage != null) {
+                    index = Integer.parseInt(indexPage);
+                }
+                NewDAO ndao = new NewDAO();
+                int count = ndao.count();
+                int endPage = count / 6;
+                if (count % 6 != 0) {
+                    endPage++;
+                }
                 ArrayList<New> listnew = newdao.getPaggingAll(index);
+                ArrayList<ListNewtmp> listview = new ArrayList<>();
+                for (New nee : listnew) {
+                    int xxx = vidao.countByNews(nee.getId());
+                    ListNewtmp yyy = new ListNewtmp(nee.getId(), nee.getTitle(), nee.getType_new(), nee.getDate(), xxx + "");
+                    listview.add(yyy);
+                }
+
+                request.setAttribute("end", endPage);
+                request.setAttribute("index", index);
                 request.setAttribute("listNews", listnew);
+                request.setAttribute("listxxx", listview);
                 request.getRequestDispatcher("/FRS/ManagerNews/ListNews.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
