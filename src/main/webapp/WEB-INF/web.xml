@@ -131,6 +131,22 @@
         <servlet-name>NewDetail</servlet-name>
         <servlet-class>News.NewDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PhanTichNgay</servlet-name>
+        <servlet-class>ThongKe.PhanTichNgay</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhanTichThang</servlet-name>
+        <servlet-class>ThongKe.PhanTichThang</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhanTichTime</servlet-name>
+        <servlet-class>ThongKe.PhanTichTime</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhanTichLocation</servlet-name>
+        <servlet-class>ThongKe.PhanTichLocation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -242,6 +258,22 @@
     <servlet-mapping>
         <servlet-name>NewDetail</servlet-name>
         <url-pattern>/NewDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhanTichNgay</servlet-name>
+        <url-pattern>/PhanTichNgay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhanTichThang</servlet-name>
+        <url-pattern>/PhanTichThang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhanTichTime</servlet-name>
+        <url-pattern>/PhanTichTime</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhanTichLocation</servlet-name>
+        <url-pattern>/PhanTichLocation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

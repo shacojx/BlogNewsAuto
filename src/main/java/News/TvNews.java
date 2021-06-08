@@ -50,7 +50,7 @@ public class TvNews extends HttpServlet {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
             String id_news = "trangchu_2";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news);
+            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "TV News");
             VisiterDAO vidao = new VisiterDAO();
             vidao.insert(vis);
             

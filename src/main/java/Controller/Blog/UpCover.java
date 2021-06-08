@@ -57,7 +57,7 @@ public class UpCover extends HttpServlet {
             SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hhmmss");
             String time = ft.format(date);
 
-            File f = new File("C:/home/toanvv/img_uploads/" + ulogin+"/"+time);
+            File f = new File("/home/shacojx/img_uploads/" + ulogin+"/"+time);
             if (!f.exists()) {
                 f.mkdirs();
             }
@@ -78,8 +78,8 @@ public class UpCover extends HttpServlet {
                                     || name_file.split("\\.")[1].equalsIgnoreCase("gif") ) {
                                 item.write(new File(up_url + File.separator + name_file));
                                 request.setAttribute("message", "<p style=\"color: #3ac33ad1;\">File Uploaded Successfully</p>");
-                                request.setAttribute("name_file", "URL: <a href=\"http://localhost:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file + "\">http://localhost:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file + "</a>");
-                                request.setAttribute("name_file_cover", "http://localhost:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file);
+                                request.setAttribute("name_file", "URL: <a href=\"http://sieucapvip1.ddns.net:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file + "\">http://sieucapvip1.ddns.net:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file + "</a>");
+                                request.setAttribute("name_file_cover", "http://sieucapvip1.ddns.net:8080/BlogAuto/DownloadImage?name_file=" + path_final+"/"+name_file);
                                 request.getRequestDispatcher("/FRS/ManagerNews/UpNews.jsp").forward(request, response);
                             } else {
 

@@ -73,6 +73,29 @@ public class NewDAO {
         }
         return null;
     }
+    
+    public ArrayList<New> getAll() throws SQLException {
+        try {
+            String query = "SELECT * FROM  `blogauto`.`news`;";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            ArrayList<New> list_new = new ArrayList<>();
+            while (rs.next()) {
+                New ne = new New(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                list_new.add(ne);
+            }
+            return list_new;
+        } catch (Exception ex) {
+            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return null;
+    }
 
     public ArrayList<New> getPaggingAll(int pageIndex) throws SQLException {
         int index = (pageIndex - 1) * 6;

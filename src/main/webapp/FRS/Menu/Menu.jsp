@@ -51,7 +51,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="${pageContext.request.contextPath}/World" class="nav-link">Home</a>
+                    <a href="${pageContext.request.contextPath}/Profile" class="nav-link">Home</a>
                 </li>
                 
             </ul>
@@ -105,9 +105,23 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="${pageContext.request.contextPath}/FRS/AdminControl/AddUser.jsp" class="nav-link ${adduser}">
+                                    <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTich.jsp" class="nav-link ${admin3}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Annalysis</p>
+                                        <p>Analysis Dashboard</p>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTich2.jsp" class="nav-link ${admin4}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Analysis Views</p>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTichLocation.jsp" class="nav-link ${admin5}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Analysis Location</p>
                                     </a>
                                 </li>
                                 

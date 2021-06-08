@@ -42,7 +42,7 @@ public class DownloadImage extends HttpServlet {
         if (fil.checkLFI(name_file) == true) {
             request.getRequestDispatcher("/View/404.jsp").forward(request, response);
         } else {
-            String filePath = "C:/home/toanvv/img_uploads/" + name_file;
+            String filePath = "/home/shacojx/img_uploads/" + name_file;
             File downloadFile = new File(filePath);
             FileInputStream inStream = new FileInputStream(downloadFile);
 

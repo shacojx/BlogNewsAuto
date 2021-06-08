@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package News;
+package ThongKe;
 
-import Controller.XuLy.GeoIP;
-import EntityNews.New;
-import EntityNews.Visiter;
-import Model.NewDAO;
 import Model.VisiterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShacoJX
  */
-public class Netflix extends HttpServlet {
+public class PhanTichTime extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,36 +37,26 @@ public class Netflix extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            GeoIP geo = new GeoIP();
-            String userIpAddress = request.getRemoteAddr();
-            String location = geo.getLocation(userIpAddress);
-            java.util.Date date1 = new java.util.Date();
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String startDate = sdf1.format(date1);
-            String id_news = "trangchu_6";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news,"Netflix");
+            String tuday = request.getParameter("tuday");
+            String denday = request.getParameter("denday");
+            String ngay1 = "";
+            String ngay2 = "";
+            if(tuday == null || denday == null || tuday.length() == 0 || denday.length() == 0){
+                request.getRequestDispatcher("FRS/AdminControl/PhanTich5.jsp").forward(request, response);
+            }else{
+                ngay1 = tuday.replaceAll("T", " ")+":00";
+                ngay2 = denday.replaceAll("T", " ")+":00";
+            }
+            
             VisiterDAO vidao = new VisiterDAO();
-            vidao.insert(vis);
+            int luotxem = vidao.countByTime(ngay1, ngay2);
+            request.setAttribute("luotxem", luotxem);
+            request.setAttribute("day1", ngay1);
+            request.setAttribute("day2", ngay2);
+            request.getRequestDispatcher("FRS/AdminControl/PhanTich5.jsp").forward(request, response);
             
-            String indexPage = request.getParameter("index");
-            
-            int index = 1;
-            if (indexPage != null) {
-                index = Integer.parseInt(indexPage);
-            }
-            NewDAO ndao = new NewDAO();
-            int count = ndao.countByType("Netflix");
-            int endPage = count / 6;
-            if (count % 6 != 0) {
-                endPage++;
-            }
-            ArrayList<New> listPaging = ndao.getPaggingByType(index,"Netflix");
-            request.setAttribute("end", endPage);
-            request.setAttribute("index", index);
-            request.setAttribute("listNew", listPaging);
-            request.getRequestDispatcher("/News/Netflix.jsp").forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Netflix.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PhanTichTime.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

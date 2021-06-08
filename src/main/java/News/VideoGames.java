@@ -49,7 +49,7 @@ public class VideoGames extends HttpServlet {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
             String id_news = "trangchu_7";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news);
+            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news,"Video Games");
             VisiterDAO vidao = new VisiterDAO();
             vidao.insert(vis);
             

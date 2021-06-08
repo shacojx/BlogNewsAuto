@@ -45,11 +45,12 @@ public class News extends HttpServlet {
             GeoIP geo = new GeoIP();
             String userIpAddress = request.getRemoteAddr();
             String location = geo.getLocation(userIpAddress);
+            System.out.println(location);
             java.util.Date date1 = new java.util.Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
             String id_news = "trangchu_0";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news);
+            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
             VisiterDAO vidao = new VisiterDAO();
             vidao.insert(vis);
 

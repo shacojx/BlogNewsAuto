@@ -14,16 +14,28 @@ public class Visiter {
     private String location;
     private String date;
     private String id_news;
+    private String type;
 
     public Visiter() {
     }
 
-    public Visiter(String ip, String location, String date, String id_news) {
+    public Visiter(String ip, String location, String date, String id_news, String type) {
         this.ip = ip;
         this.location = location;
         this.date = date;
         this.id_news = id_news;
+        this.type = type;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+   
 
     public String getIp() {
         return ip;
@@ -59,9 +71,10 @@ public class Visiter {
 
     @Override
     public String toString() {
-        return "Visiter{" + "ip=" + ip + ", location=" + location + ", date=" + date + ", id_news=" + id_news + '}';
+        return "Visiter{" + "ip=" + ip + ", location=" + location + ", date=" + date + ", id_news=" + id_news + ", type=" + type + '}';
     }
-    
+
+   
     
     
 }
