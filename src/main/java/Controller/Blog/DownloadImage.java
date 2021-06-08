@@ -48,7 +48,7 @@ public class DownloadImage extends HttpServlet {
 
             // if you want to use a relative path to context root:
             String relativePath = getServletContext().getRealPath("");
-            System.out.println("relativePath = " + relativePath);
+//            System.out.println("relativePath = " + relativePath);
 
             // obtains ServletContext
             ServletContext context = getServletContext();
@@ -59,7 +59,7 @@ public class DownloadImage extends HttpServlet {
                 // set to binary type if MIME mapping not found
                 mimeType = "application/octet-stream";
             }
-            System.out.println("MIME type: " + mimeType);
+//            System.out.println("MIME type: " + mimeType);
 
             // modifies response
             response.setContentType(mimeType);

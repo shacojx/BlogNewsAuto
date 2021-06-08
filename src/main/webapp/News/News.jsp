@@ -199,7 +199,7 @@
 
     </head>
     <body>
-
+        
         <jsp:include page="Menu.jsp" />
 
         <!-- section -->
@@ -318,7 +318,7 @@
                             <div class="clearfix visible-md visible-lg"></div>
                         </div>
                     </div>
-                  
+
                     <div class="col-md-4">
                         <!-- post widget -->
                         <div class="aside-widget">

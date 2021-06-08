@@ -22,23 +22,23 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/News/css/style.css"/>
-        
-       
-        
+
+
+
     </head>
     <body>
-
+       
         <!-- Header -->
         <header id="header">
             <!-- Nav -->
             <div id="nav">
                 <!-- Main Nav -->
                 <div id="nav-fixed">
-                    <div style="padding-left: 15%; padding-right: 15%;">
+                    <div style="padding-left: 10%; padding-right: 10%;">
                         <!-- logo -->
-                        <div class="nav-logo ">
-                            <a href="${pageContext.request.contextPath}/News" class="logo"><img style="padding-top: 5%;
-    padding-bottom: 1%;" class="img-responsive" src="${pageContext.request.contextPath}/News/img/logox.PNG" alt=""></a>
+                        <div class="nav-logo " style="width: 10%;">
+                            <a href="${pageContext.request.contextPath}/News" class="logo"><img style="padding-top: 10%"
+                        class="img-responsive" src="${pageContext.request.contextPath}/News/img/logox.PNG" alt=""></a>
                         </div>
                         <!-- /logo -->
 

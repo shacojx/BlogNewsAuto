@@ -36,8 +36,9 @@ public class News extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String userIpAddress = request.getRemoteAddr();
             String indexPage = request.getParameter("index");
             int index = 1;
             if (indexPage != null) {
@@ -52,6 +53,9 @@ public class News extends HttpServlet {
 
             ArrayList<New> listPaging = ndao.getPaggingAll(index);
             ArrayList<New> listtop6 = ndao.getTop6News();
+            
+            System.out.println("ip client: "+userIpAddress);
+            
             request.setAttribute("end", endPage);
             request.setAttribute("index", index);
             request.setAttribute("listNew", listPaging);

@@ -265,11 +265,11 @@ RESPONSIVE
 	menu
 \*----------------------------*/
  .nav-menu {
-     margin-left: 20px;
+     margin-left: 1%;
 }
  .nav-menu li a {
      position: relative;
-     padding: 25px 20px;
+     padding: 20px 10px;
      text-transform: capitalize;
      -webkit-box-shadow: -1px 0px 0px 0px #eceef2 inset;
      box-shadow: -1px 0px 0px 0px #eceef2 inset;
@@ -961,7 +961,7 @@ RESPONSIVE
 }
  @media only screen and (max-width: 767px) {
 	 .page-header h1 {
-		 font-size: 28px;
+		 font-size: 25px;
 	}
      .post.post-row .post-img {
          width: 100%;
