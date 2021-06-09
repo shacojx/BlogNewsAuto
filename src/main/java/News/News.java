@@ -6,6 +6,8 @@
 package News;
 
 import Controller.XuLy.GeoIP;
+import EntityNews.ListNewtmp;
+import EntityNews.ListNewtmp2;
 import EntityNews.New;
 import EntityNews.Visiter;
 import Model.NewDAO;
@@ -40,7 +42,7 @@ public class News extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             GeoIP geo = new GeoIP();
             String userIpAddress = request.getRemoteAddr();
@@ -61,21 +63,26 @@ public class News extends HttpServlet {
             }
             NewDAO ndao = new NewDAO();
             int count = ndao.count();
-            int endPage = count / 6;
-            if (count % 6 != 0) {
+            int endPage = count / 12;
+            if (count % 12 != 0) {
                 endPage++;
             }
 
+            GetTopNews gettop = new GetTopNews();
+            ArrayList<ListNewtmp> listlii = gettop.RankingIP();
+            ArrayList<ListNewtmp2> listliii = new ArrayList<>();
+            for(ListNewtmp lol : listlii){
+                String cove = ndao.getCoverById(lol.getId());
+                ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
+                listliii.add(lolo);
+            }
+
             ArrayList<New> listPaging = ndao.getPaggingAll(index);
-            ArrayList<New> listtop6 = ndao.getTop6News();
-
-            System.out.println("ip client: " + userIpAddress);
-
             request.setAttribute("end", endPage);
             request.setAttribute("index", index);
             request.setAttribute("listNew", listPaging);
-            request.setAttribute("listtop6", listtop6);
-            request.getRequestDispatcher("/News/News.jsp").forward(request, response);
+            request.setAttribute("listTop", listliii);
+            request.getRequestDispatcher("/MovieNews/News.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(News.class.getName()).log(Level.SEVERE, null, ex);
         }

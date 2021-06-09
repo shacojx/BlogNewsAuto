@@ -98,9 +98,9 @@ public class NewDAO {
     }
 
     public ArrayList<New> getPaggingAll(int pageIndex) throws SQLException {
-        int index = (pageIndex - 1) * 6;
+        int index = (pageIndex - 1) * 12;
         try {
-            String query = "SELECT * FROM  `blogauto`.`news` ORDER BY  date desc  LIMIT 6 OFFSET ?;";
+            String query = "SELECT * FROM  `blogauto`.`news` ORDER BY  date desc  LIMIT 12 OFFSET ?;";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setInt(1, index);
@@ -121,11 +121,12 @@ public class NewDAO {
         }
         return null;
     }
+    
 
     public ArrayList<New> getPaggingByType(int pageIndex, String type) throws SQLException {
-        int index = (pageIndex - 1) * 6;
+        int index = (pageIndex - 1) * 4;
         try {
-            String query = "SELECT * FROM `blogauto`.`news` WHERE `type` = ? ORDER BY date DESC LIMIT 6 OFFSET ?;";
+            String query = "SELECT * FROM `blogauto`.`news` WHERE `type` = ? ORDER BY date DESC LIMIT 4 OFFSET ?;";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, type);
@@ -147,6 +148,8 @@ public class NewDAO {
         }
         return null;
     }
+    
+    
 
     public ArrayList<New> getTop6News() throws SQLException {
 
@@ -265,6 +268,27 @@ public class NewDAO {
             conn.close();
         }
         return 0;
+    }
+    
+    public String getCoverById(String id) throws SQLException {
+        try {
+            String query = "SELECT `cover` FROM `blogauto`.`news` WHERE `id` = ?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String cover = rs.getString(1);
+                return cover;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return null;
     }
     
     

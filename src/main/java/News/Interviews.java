@@ -6,6 +6,8 @@
 package News;
 
 import Controller.XuLy.GeoIP;
+import EntityNews.ListNewtmp;
+import EntityNews.ListNewtmp2;
 import EntityNews.New;
 import EntityNews.Visiter;
 import Model.NewDAO;
@@ -61,15 +63,25 @@ public class Interviews extends HttpServlet {
             }
             NewDAO ndao = new NewDAO();
             int count = ndao.countByType("Interviews");
-            int endPage = count / 6;
-            if (count % 6 != 0) {
+            int endPage = count / 4;
+            if (count % 4 != 0) {
                 endPage++;
+            }
+            GetTopNews gettop = new GetTopNews();
+            ArrayList<ListNewtmp> listlii = gettop.RankingIP();
+            ArrayList<ListNewtmp2> listliii = new ArrayList<>();
+            for(ListNewtmp lol : listlii){
+                String cove = ndao.getCoverById(lol.getId());
+                ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
+                listliii.add(lolo);
             }
             ArrayList<New> listPaging = ndao.getPaggingByType(index,"Interviews");
             request.setAttribute("end", endPage);
             request.setAttribute("index", index);
             request.setAttribute("listNew", listPaging);
-            request.getRequestDispatcher("/News/Interviews.jsp").forward(request, response);
+            request.setAttribute("listTop", listliii);
+            request.setAttribute("fuck", "Interviews");
+            request.getRequestDispatcher("/MovieNews/Interviews.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(Interviews.class.getName()).log(Level.SEVERE, null, ex);
         }
