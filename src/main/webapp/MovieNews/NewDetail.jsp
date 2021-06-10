@@ -45,6 +45,7 @@
                         <div><h1>${Ne.title}</h1></div><br>
                         <div>
                             ${Ne.content}
+                            
                         </div>
 
                     </div>
