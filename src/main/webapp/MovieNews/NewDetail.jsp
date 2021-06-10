@@ -44,8 +44,7 @@
                     <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
                         <div><h1>${Ne.title}</h1></div><br>
                         <div>
-                            ${Ne.content}
-                            
+                            ${Ne.content}       
                         </div>
 
                     </div>

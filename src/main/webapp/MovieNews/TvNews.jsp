@@ -57,7 +57,7 @@
                     <jsp:include page="Most.jsp" />
                 </div>
                 <div class="row mx-0">
-                    <div class="col-12 text-center pb-4 pt-4">
+                    <div class="row text-center pb-4 pt-4">
                         <c:if test = "${end < 2}">
                             <a href="${pageContext.request.contextPath}/${fuck}?index=1" class="btn_mange_pagging">&nbsp;&nbsp; Start : 1</a>      
                             <c:forEach begin="1" end="${end}" var="i">
