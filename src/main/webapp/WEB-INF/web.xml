@@ -3,6 +3,11 @@
     <welcome-file-list>
         <welcome-file>News</welcome-file>
     </welcome-file-list>
+    <listener>
+        <listener-class>
+            Controller.Blog.SessionCounter
+        </listener-class>
+    </listener>
     <filter>
         <filter-name>RouterFilter</filter-name>
         <filter-class>Filter.RouterFilter</filter-class>

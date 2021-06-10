@@ -126,6 +126,13 @@
                                 </li>
                                 
                                 <li class="nav-item">
+                                    <a href="${pageContext.request.contextPath}/FRS/AdminControl/ViewUserOnline.jsp" class="nav-link ${admin6}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View User Online</p>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/AddUser.jsp" class="nav-link ${adduser}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm người dùng</p>
