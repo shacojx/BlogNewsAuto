@@ -55,6 +55,9 @@ public class NewDetail extends HttpServlet {
                 if (ne == null) {
                     response.sendRedirect(path + "/NotFound");
                 } else {
+                    String nd = ne.getContent();
+                    nd = nd.replaceAll("shacojx", "");
+                    ne.setContent(nd);
                     GeoIP geo = new GeoIP();
                     String userIpAddress = request.getRemoteAddr();
                     String location = geo.getLocation(userIpAddress);
