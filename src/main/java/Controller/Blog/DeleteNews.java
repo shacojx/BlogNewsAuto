@@ -40,6 +40,7 @@ public class DeleteNews extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String path = request.getContextPath();
             Cookie[] listCookie = request.getCookies();
             String user = "";
             String pass = "";
@@ -60,7 +61,7 @@ public class DeleteNews extends HttpServlet {
                 String id = request.getParameter("id");
                 
                 if(id == null || id.length() == 0){
-                    response.sendRedirect("/View/403.jsp");
+                    response.sendRedirect(path + "/NotFound");
                 }else{
                     NewDAO newdao = new NewDAO();
                     newdao.DeleteNewByID(id);

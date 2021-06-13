@@ -15,13 +15,11 @@
         <div class="container-fluid fh5co_footer_bg pb-3">
             <div class="container animate-box">
                 <div class="row">
-                    <div class="col-12 spdp_right py-5"><img src="${pageContext.request.contextPath}/MovieNews/images/white_logo.png" alt="img" class="footer_logo"/></div>
+                    <div class="col-12 spdp_right py-5"></div>
                     <div class="clearfix"></div>
                     <div class="col-12 col-md-4 col-lg-3">
                         <div class="footer_main_title py-3"> About</div>
-                        <div class="footer_sub_about pb-3"> Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        <div class="footer_sub_about pb-3"> C4K is the best movie news in the world. We always update the latest news.<br>Contact: c4kstudio@gmail.com
                         </div>
                         <div class="footer_mediya_icon">
                             <div class="text-center d-inline-block"><a href="https://www.linkedin.com/" class="fh5co_display_table_footer">
@@ -73,9 +71,9 @@
         <div class="container-fluid fh5co_footer_right_reserved">
             <div class="container">
                 <div class="row  ">
-                    <div class="col-12 col-md-6 py-4 Reserved"> © Copyright , All rights reserved. Design by <a href="#" title="EOG">EOG</a>. </div>
-                    <div class="col-12 col-md-6 spdp_right py-4">
-                        <a href="${pageContext.request.contextPath}/News" class="footer_last_part_menu">Home</a>                     
+                    <div class="col-12 col-md-6 py-4 Reserved"> © Copyright by <a href="#" title="EOG">C4K Studio</a> </div>
+                    <div class="col-12 col-md-6 spdp_left py-4">
+<!--                        <a href="${pageContext.request.contextPath}/News" class="footer_last_part_menu">Home</a>                     -->
                     </div>
                 </div>
             </div>

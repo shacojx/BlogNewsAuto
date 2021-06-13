@@ -11,7 +11,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>24 News</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
+        <title>Interviews</title>
         <link href="${pageContext.request.contextPath}/MovieNews/css/media_query.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/MovieNews/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"

@@ -32,16 +32,24 @@ public class GeoIP {
             double lat_src = 0;
             double long_src = 0;
             String location_src = null;
+            String city = null;
 
             for (String x : s) {
                 if (x.contains("\"country\"")) {
                     location_src = x.split(":")[1].trim();
-                    location_src = location_src.replace("\"", "");
-                    location_src = location_src.replace(",", "");
+                    location_src = location_src.replaceAll("\"", "");
+                    location_src = location_src.replaceAll(",", "");
+                }
+                if(x.contains("\"city\"")){
+                    city = x.split(":")[1].trim();
+                    city = city.replaceAll("\"", "");
+                    city = city.replaceAll(",", "");
                 }
             }
+            
+            String diachi = city +" - "+ location_src;
 
-            return location_src;
+            return diachi;
 
         } catch (IOException ex) {
             Logger.getLogger(GeoIP.class.getName()).log(Level.SEVERE, null, ex);

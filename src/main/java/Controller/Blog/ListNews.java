@@ -65,30 +65,52 @@ public class ListNews extends HttpServlet {
             } else {
                 NewDAO newdao = new NewDAO();
                 VisiterDAO vidao = new VisiterDAO();
-                String indexPage = request.getParameter("index");
-                int index = 1;
-                if (indexPage != null) {
-                    index = Integer.parseInt(indexPage);
-                }
                 NewDAO ndao = new NewDAO();
                 int count = ndao.count();
-                int endPage = count / 6;
-                if (count % 6 != 0) {
+                int endPage = count / 12;
+                if (count % 12 != 0) {
                     endPage++;
                 }
-                ArrayList<New> listnew = newdao.getPaggingAll(index);
-                ArrayList<ListNewtmp> listview = new ArrayList<>();
-                for (New nee : listnew) {
-                    int xxx = vidao.countByNews(nee.getId());
-                    ListNewtmp yyy = new ListNewtmp(nee.getId(), nee.getTitle(), nee.getType_new(), nee.getDate(), xxx + "");
-                    listview.add(yyy);
+                String indexPage = request.getParameter("index");
+                int index = 1;
+                boolean check = true;
+                String path = request.getContextPath();
+
+                if (indexPage != null) {
+                    char[] list_index = indexPage.toCharArray();
+                    for (char ch : list_index) {
+                        if (Character.isDigit(ch) == false) {
+                            check = false;
+                            break;
+
+                        }
+                    }
+                }
+                if (check == false) {
+                    response.sendRedirect(path + "/NotFound");
+                } else {
+                    if (indexPage != null) {
+                        index = Integer.parseInt(indexPage);
+                    }
+                    if (index > endPage) {
+                        response.sendRedirect(path + "/NotFound");
+                    } else {
+                        ArrayList<New> listnew = newdao.getPaggingAll(index);
+                        ArrayList<ListNewtmp> listview = new ArrayList<>();
+                        for (New nee : listnew) {
+                            int xxx = vidao.countByNews(nee.getId());
+                            ListNewtmp yyy = new ListNewtmp(nee.getId(), nee.getTitle(), nee.getType_new(), nee.getDate(), xxx + "");
+                            listview.add(yyy);
+                        }
+
+                        request.setAttribute("end", endPage);
+                        request.setAttribute("index", index);
+                        request.setAttribute("listNews", listnew);
+                        request.setAttribute("listxxx", listview);
+                        request.getRequestDispatcher("/FRS/ManagerNews/ListNews.jsp").forward(request, response);
+                    }
                 }
 
-                request.setAttribute("end", endPage);
-                request.setAttribute("index", index);
-                request.setAttribute("listNews", listnew);
-                request.setAttribute("listxxx", listview);
-                request.getRequestDispatcher("/FRS/ManagerNews/ListNews.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ListNews.class.getName()).log(Level.SEVERE, null, ex);

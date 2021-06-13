@@ -152,6 +152,10 @@
         <servlet-name>PhanTichLocation</servlet-name>
         <servlet-class>ThongKe.PhanTichLocation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotFound</servlet-name>
+        <servlet-class>News.NotFound</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>PhanTichLocation</servlet-name>
         <url-pattern>/PhanTichLocation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotFound</servlet-name>
+        <url-pattern>/NotFound</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

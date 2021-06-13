@@ -42,37 +42,45 @@ public class NewDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
             String id = request.getParameter("id");
-            NewDAO nedao = new NewDAO();
-            New ne = nedao.getNewById(id);
+            String path = request.getContextPath();
+            if (id == null) {
+                response.sendRedirect(path + "/NotFound");
+            } else {
+                NewDAO nedao = new NewDAO();
+                New ne = nedao.getNewById(id);
+                if (ne == null) {
+                    response.sendRedirect(path + "/NotFound");
+                } else {
+                    GeoIP geo = new GeoIP();
+                    String userIpAddress = request.getRemoteAddr();
+                    String location = geo.getLocation(userIpAddress);
+                    java.util.Date date1 = new java.util.Date();
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String startDate = sdf1.format(date1);
+                    Visiter vis = new Visiter(userIpAddress, location, startDate, id, ne.getType_new());
+                    VisiterDAO vidao = new VisiterDAO();
+                    vidao.insert(vis);
 
-            GeoIP geo = new GeoIP();
-            String userIpAddress = request.getRemoteAddr();
-            String location = geo.getLocation(userIpAddress);
-            java.util.Date date1 = new java.util.Date();
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String startDate = sdf1.format(date1);
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id, ne.getType_new());
-            VisiterDAO vidao = new VisiterDAO();
-            vidao.insert(vis);
+                    GetTopNews gettop = new GetTopNews();
+                    ArrayList<ListNewtmp> listlii = gettop.RankingIP();
+                    ArrayList<ListNewtmp2> listliii = new ArrayList<>();
+                    for (ListNewtmp lol : listlii) {
+                        String cove = nedao.getCoverById(lol.getId());
+                        ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
+                        listliii.add(lolo);
+                    }
 
-            GetTopNews gettop = new GetTopNews();
-            ArrayList<ListNewtmp> listlii = gettop.RankingIP();
-            ArrayList<ListNewtmp2> listliii = new ArrayList<>();
-            for (ListNewtmp lol : listlii) {
-                String cove = nedao.getCoverById(lol.getId());
-                ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
-                listliii.add(lolo);
+                    ArrayList<New> listPaging = nedao.getPaggingAll(1);
+                    request.setAttribute("listNew", listPaging);
+                    request.setAttribute("listTop", listliii);
+                    request.setAttribute("Ne", ne);
+                    request.getRequestDispatcher("/MovieNews/NewDetail.jsp").forward(request, response);
+                }
             }
-
-            ArrayList<New> listPaging = nedao.getPaggingAll(1);
-            request.setAttribute("listNew", listPaging);
-            request.setAttribute("listTop", listliii);
-            request.setAttribute("Ne", ne);
-            request.getRequestDispatcher("/MovieNews/NewDetail.jsp").forward(request, response);
 
         } catch (SQLException ex) {
             Logger.getLogger(NewDetail.class.getName()).log(Level.SEVERE, null, ex);

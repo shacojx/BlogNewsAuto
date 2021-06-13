@@ -361,7 +361,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}"><h1>Home</h1></a></li>
+                                   
                                     
                                 </ol>
                             </div>
@@ -430,7 +430,8 @@
                         </g>
                         </svg>
                         <div class="bottomconvo">
-                            Page not found.  Wubba Lubba Dub Dub.
+                            Page not found.  Wubba Lubba Dub Dub.<br>
+                            <a style="text-decoration: none" href="${pageContext.request.contextPath}"><h1>Home</h1></a>
                         </div>
                     </div>
                 </div>

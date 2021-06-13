@@ -12,7 +12,11 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>24 News — Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+        <meta property="og:image" content="${Ne.cover}">
+        <meta property="og:title" content="${Ne.title}">
+        <meta property="og:description" content="${Ne.title}">
+        <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
+        <title>${Ne.title}</title>
         <link href="${pageContext.request.contextPath}/MovieNews/css/media_query.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/MovieNews/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -25,12 +29,17 @@
         <link href="${pageContext.request.contextPath}/MovieNews/css/style_1.css" rel="stylesheet" type="text/css"/>
         <!-- Modernizr JS -->
         <script src="${pageContext.request.contextPath}/MovieNews/js/modernizr-3.5.0.min.js"></script>
+        <style>
+            .xxx img {
+                margin-bottom: 2%;
+            }
+        </style>
     </head>
     <body class="single">
 
         <jsp:include page="Menu.jsp" />
 
-        <div id="fh5co-title-box" style="background-image: url('${Ne.cover}'); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
+        <div id="fh5co-title-box" style="background-image: url('${Ne.cover}'); background-position: 50% 0.0px;" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="page-title">
 
@@ -42,8 +51,8 @@
             <div class="container paddding">
                 <div class="row mx-0">
                     <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
-                        <div><h1>${Ne.title}</h1></div><br>
-                        <div>
+                        <div><h3>${Ne.title}</h3></div><br>
+                        <div class="xxx">
                             ${Ne.content}       
                         </div>
 

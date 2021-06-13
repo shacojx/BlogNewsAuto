@@ -42,12 +42,12 @@ public class News extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             GeoIP geo = new GeoIP();
             String userIpAddress = request.getRemoteAddr();
             String location = geo.getLocation(userIpAddress);
-            System.out.println(location);
+//            System.out.println(location);
             java.util.Date date1 = new java.util.Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
@@ -55,34 +55,56 @@ public class News extends HttpServlet {
             Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
             VisiterDAO vidao = new VisiterDAO();
             vidao.insert(vis);
-
-            String indexPage = request.getParameter("index");
-            int index = 1;
-            if (indexPage != null) {
-                index = Integer.parseInt(indexPage);
-            }
             NewDAO ndao = new NewDAO();
             int count = ndao.count();
             int endPage = count / 12;
             if (count % 12 != 0) {
                 endPage++;
             }
+            int index = 1;
+            boolean check = true;
+            String path = request.getContextPath();
 
-            GetTopNews gettop = new GetTopNews();
-            ArrayList<ListNewtmp> listlii = gettop.RankingIP();
-            ArrayList<ListNewtmp2> listliii = new ArrayList<>();
-            for(ListNewtmp lol : listlii){
-                String cove = ndao.getCoverById(lol.getId());
-                ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
-                listliii.add(lolo);
+            String indexPage = request.getParameter("index");
+
+            if (indexPage != null) {
+                char[] list_index = indexPage.toCharArray();
+                for (char ch : list_index) {
+                    if (Character.isDigit(ch) == false) {
+                        check = false;
+                        break;
+
+                    }
+                }
+            }
+            if (check == false) {
+                response.sendRedirect(path + "/NotFound");
+            } else {
+                if (indexPage != null) {
+                    index = Integer.parseInt(indexPage);
+                }
+
+                if (index > endPage) {
+                    response.sendRedirect(path + "/NotFound");
+                } else {
+                    GetTopNews gettop = new GetTopNews();
+                    ArrayList<ListNewtmp> listlii = gettop.RankingIP();
+                    ArrayList<ListNewtmp2> listliii = new ArrayList<>();
+                    for (ListNewtmp lol : listlii) {
+                        String cove = ndao.getCoverById(lol.getId());
+                        ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
+                        listliii.add(lolo);
+                    }
+
+                    ArrayList<New> listPaging = ndao.getPaggingAll(index);
+                    request.setAttribute("end", endPage);
+                    request.setAttribute("index", index);
+                    request.setAttribute("listNew", listPaging);
+                    request.setAttribute("listTop", listliii);
+                    request.getRequestDispatcher("/MovieNews/News.jsp").forward(request, response);
+                }
             }
 
-            ArrayList<New> listPaging = ndao.getPaggingAll(index);
-            request.setAttribute("end", endPage);
-            request.setAttribute("index", index);
-            request.setAttribute("listNew", listPaging);
-            request.setAttribute("listTop", listliii);
-            request.getRequestDispatcher("/MovieNews/News.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(News.class.getName()).log(Level.SEVERE, null, ex);
         }

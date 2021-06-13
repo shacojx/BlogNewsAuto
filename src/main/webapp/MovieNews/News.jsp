@@ -12,7 +12,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>24 News</title>
+        <title>Home</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
         <link href="${pageContext.request.contextPath}/MovieNews/css/media_query.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/MovieNews/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -25,7 +26,7 @@
         <link href="${pageContext.request.contextPath}/MovieNews/css/style_1.css" rel="stylesheet" type="text/css"/>
         <!-- Modernizr JS -->
         <script src="${pageContext.request.contextPath}/MovieNews/js/modernizr-3.5.0.min.js"></script>
-
+        
     </head>
     <body>
         <c:set var = "home" scope = "request" value = "active"/>
@@ -35,12 +36,12 @@
                 <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
                     <c:forEach items="${listNew}" var="i" begin="0" end="0">
 
-                        <div class="fh5co_suceefh5co_height"><img src="${i.cover}" alt="img"/>
+                        <div class="fh5co_suceefh5co_height"><img style="object-fit: cover;" src="${i.cover}" alt="img" class="responsive"/>
                             <div class="fh5co_suceefh5co_height_position_absolute"></div>
                             <div class="fh5co_suceefh5co_height_position_absolute_font">
-                                <div class=""><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}
+                                <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}
                                     </a></div>
-                                <div class=""><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font"> ${i.title} </a></div>
+                                <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font"> ${i.title} </a></div>
                             </div>
                         </div>
                     </c:forEach>
@@ -50,11 +51,11 @@
                     <div class="row">
                         <c:forEach items="${listNew}" var="i" begin="1" end="4">
                             <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                                <div class="fh5co_suceefh5co_height_2"><img src="${i.cover}" alt="img"/>
+                                <div class="fh5co_suceefh5co_height_2"><img style="object-fit: cover;" src="${i.cover}" alt="img" />
                                     <div class="fh5co_suceefh5co_height_position_absolute"></div>
                                     <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                                        <div class=""><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}</a></div>
-                                        <div class=""><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font_2" > ${i.title} </a></div>
+                                        <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}</a></div>
+                                        <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font_2" > ${i.title} </a></div>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +76,7 @@
                                 <div class="fh5co_latest_trading_img"><img src="${i.cover}" alt=""
                                                                            class="fh5co_img_special_relative"/></div>
                                 <div class="fh5co_latest_trading_img_position_absolute"></div>
-                                <div class="fh5co_latest_trading_img_position_absolute_1">
+                                <div class="fh5co_latest_trading_img_position_absolute_1" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;" >
                                     <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="text-white"> ${i.title} </a>
                                     <div class="fh5co_latest_trading_date_and_name_color"> [${i.type}] ${i.date}</div>
                                 </div>

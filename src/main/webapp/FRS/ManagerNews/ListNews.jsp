@@ -17,7 +17,8 @@
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Funtap Report Security</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
+        <title>C4K Studio Admin</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -190,47 +191,63 @@
                         <div class="container">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">      
-                                        <c:if test = "${index == 1 && end > 3}">
+                                    <c:if test = "${end < 2}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                            <c:forEach begin="${index}" end="${index+1}" var="i">
+                                            <c:forEach begin="1" end="${end}" var="i">
                                             <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
                                             </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index != 1 && index != end && index >= 4 && index < end - 3}">
+                                        <c:if test = "${index == 1}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <c:forEach begin="1" end="3" var="i">
                                             <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
                                             </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index != 1 && index != end && index <= 3}">
+                                        <c:if test = "${index == 2 && end < 5}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <c:forEach begin="1" end="1" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                            <c:forEach begin="2" end="${end}" var="i">
                                             <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
                                             </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index >= end -2 && index < end && index > 3 }">
+                                        <c:if test = "${index == 2 && end >= 5}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                            <c:forEach begin="${index-1}" end="${index+1}" var="i">
+                                            <c:forEach begin="1" end="1" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                            <c:forEach begin="2" end="5" var="i">
                                             <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
                                             </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index == end && index == 1}">
+                                        <c:if test = "${index > 2 && index < end-1}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">${index}</a></li>
+                                            <c:forEach begin="${index-2}" end="${index-1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                            <c:forEach begin="${index}" end="${index+2}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index > end && end != 0}">
+                                        <c:if test = "${index == end-1 && index != 2}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                        <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}">Not Fond</a></li>
+                                            <c:forEach begin="${index -2}" end="${index-1}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
+                                            <c:forEach begin="${index}" end="${end}" var="i">
+                                            <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
+                                            </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>
                                         </c:if>
-                                        <c:if test = "${index == end && index != 1}">
+                                        <c:if test = "${index == end}">
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=1">Đầu</a></li>
-                                            <c:forEach begin="${index-1}" end="${index}" var="i">
+                                            <c:forEach begin="${index-2}" end="${index}" var="i">
                                             <li class="${i==index?"active":""}" class="page-item"><a class="${i==index?"active":""} page-link" style="${i==index?"background-color: yellow;":""}" href="${pageContext.request.contextPath}/ListNews?index=${i}"><c:out value = "${i}"/></a></li>
                                             </c:forEach>
                                         <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ListNews?index=${end}">Cuối</a></li>

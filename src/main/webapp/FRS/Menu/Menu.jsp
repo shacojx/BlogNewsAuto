@@ -13,7 +13,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
+        <title>C4K Studio Admin</title>
 
     </head>
     <body>
@@ -73,7 +74,7 @@
             <a href="${pageContext.request.contextPath}/Profile" class="brand-link">
                 <img src="${pageContext.request.contextPath}/AdminLTE/dist/img/ano.png" alt="EOG Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
-                <span class="brand-text font-weight-light">Craw Blog</span>
+                <span class="brand-text font-weight-light">C4K Studio</span>
             </a>
 
             <!-- Sidebar -->
