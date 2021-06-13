@@ -29,10 +29,10 @@
                 <div class="row pb-3">
                     <div class="col-5 align-self-center">
 
-                        <img src="${i.cover}" alt="img" class="fh5co_most_trading" style="object-fit: cover;"/>
+                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><img src="${i.cover}" alt="img" class="fh5co_most_trading" style="object-fit: cover;"/></a>
                     </div>
-                    <div class="col-7 paddding" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;">
-                        <div class="most_fh5co_treding_font"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_magna py-2" style="font-size: 10px;"> ${i.title}</a></div>
+                    <div class="col-7 paddding">
+                        <div class="most_fh5co_treding_font" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_magna py-2" style="font-size: 10px;"> ${i.title}</a></div>
                         <div class="most_fh5co_treding_font_123"> ${i.date}</div>
                     </div>
                 </div>

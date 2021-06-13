@@ -12,6 +12,9 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta property="og:image" content="${pageContext.request.contextPath}/MovieNews/images/CC4K2.PNG">
+        <meta property="og:title" content="Movie News">
+        <meta property="og:description" content="Movie News">
         <title>Home</title>
         <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
         <link href="${pageContext.request.contextPath}/MovieNews/css/media_query.css" rel="stylesheet" type="text/css"/>
@@ -36,21 +39,21 @@
                 <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
                     <c:forEach items="${listNew}" var="i" begin="0" end="0">
 
-                        <div class="fh5co_suceefh5co_height"><img style="object-fit: cover;" src="${i.cover}" alt="img" class="responsive"/>
+                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_suceefh5co_height"><img style="object-fit: cover;" src="${i.cover}" alt="img" class="responsive"/>
                             <div class="fh5co_suceefh5co_height_position_absolute"></div>
                             <div class="fh5co_suceefh5co_height_position_absolute_font">
                                 <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}
                                     </a></div>
                                 <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font"> ${i.title} </a></div>
                             </div>
-                        </div>
+                    </div></a>
                     </c:forEach>
                 </div>
 
                 <div class="col-md-6">
                     <div class="row">
                         <c:forEach items="${listNew}" var="i" begin="1" end="4">
-                            <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
+                            <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
                                 <div class="fh5co_suceefh5co_height_2"><img style="object-fit: cover;" src="${i.cover}" alt="img" />
                                     <div class="fh5co_suceefh5co_height_position_absolute"></div>
                                     <div class="fh5co_suceefh5co_height_position_absolute_font_2">
@@ -58,7 +61,7 @@
                                         <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font_2" > ${i.title} </a></div>
                                     </div>
                                 </div>
-                            </div>
+                                </div></a>
                         </c:forEach>
                     </div>
                 </div>
@@ -72,7 +75,7 @@
                 <div class="owl-carousel owl-theme js" id="slider1">
                     <c:forEach items="${listTop}" var="i" begin="0" end="3">
                         <div class="item px-2">
-                            <div class="fh5co_latest_trading_img_position_relative">
+                            <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_latest_trading_img_position_relative">
                                 <div class="fh5co_latest_trading_img"><img src="${i.cover}" alt=""
                                                                            class="fh5co_img_special_relative"/></div>
                                 <div class="fh5co_latest_trading_img_position_absolute"></div>
@@ -80,8 +83,8 @@
                                     <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="text-white"> ${i.title} </a>
                                     <div class="fh5co_latest_trading_date_and_name_color"> [${i.type}] ${i.date}</div>
                                 </div>
+                                </div></a>
                             </div>
-                        </div>
                     </c:forEach>
                 </div>
             </div>
@@ -94,13 +97,13 @@
                 <div class="owl-carousel owl-theme" id="slider2">
                     <c:forEach items="${listNew}" var="i" begin="5" end="7">
                         <div class="item px-2">
-                            <div class="fh5co_hover_news_img">
+                            <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_hover_news_img">
                                 <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
                                 <div>
                                     <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
                                     <div class="c_g"><i class="fa fa-clock-o"></i> [${i.type_new}] ${i.date}</div>
                                 </div>
-                            </div>
+                            </div></a>
                         </div>
                     </c:forEach>
 
@@ -120,7 +123,7 @@
                             <div class="row pb-4">
                                 <div class="col-md-5">
                                     <div class="fh5co_hover_news_img">
-                                        <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
+                                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
                                         <div></div>
                                     </div>
                                 </div>

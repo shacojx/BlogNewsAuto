@@ -11,6 +11,9 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta property="og:image" content="${pageContext.request.contextPath}/MovieNews/images/CC4K2.PNG">
+        <meta property="og:title" content="Interviews">
+        <meta property="og:description" content="Interviews">
         <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
         <title>Interviews</title>
         <link href="${pageContext.request.contextPath}/MovieNews/css/media_query.css" rel="stylesheet" type="text/css"/>
@@ -41,7 +44,7 @@
                             <div class="row pb-4">
                                 <div class="col-md-5">
                                     <div class="fh5co_hover_news_img">
-                                        <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
+                                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
                                         <div></div>
                                     </div>
                                 </div>
@@ -133,7 +136,7 @@
                     <c:forEach items="${listTop}" var="i" begin="0" end="3">
                         <div class="item px-2">
                             <div class="fh5co_hover_news_img">
-                                <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
+                                <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
                                 <div>
                                     <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
                                     <div class="c_g"><i class="fa fa-clock-o"></i>[${i.type}] ${i.date}</div>

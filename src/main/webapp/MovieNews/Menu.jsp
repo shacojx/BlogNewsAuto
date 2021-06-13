@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8 fh5co_padding_menu" style="display: flex ;">
                         <img style="filter: drop-shadow(1px 1px 0px#222); margin-left: 2%;" src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="fh5co_logo_width"/>
-                        <h1 style="width: 100%; padding-left: 50px; font-weight: 700; font-family: math; margin-bottom: 0px; align-items: flex-end; font-size: 45px; display: flex;">C4K STUDIO</h1>
+                        <h1 style="color: rgb(243 92 105); width: 100%; padding-left: 50px; font-weight: 700; font-family: math; margin-bottom: 0px; align-items: flex-end; font-size: 45px; display: flex;">C4K STUDIO</h1>
                     </div>
                         <div class="col-12 col-md-4 align-self-center fh5co_mediya_right" style="padding-right: 2%;">
                         
@@ -45,17 +45,17 @@
             <div class="container padding_786">
                 <nav class="navbar navbar-toggleable-md navbar-light " style=" padding: 0.5rem 0px;">
                     <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
-                            style="margin-top: 4px!important"
+                            style="margin-top: 9px!important; margin-right: 0px;"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                             aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                             <a class="navbar-brand" href="${pageContext.request.contextPath}/News" style="display: inline-flex; align-items: center">
-                        <img src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="mobile_logo_width" style="width: 70px"/>
-                        <h1 style="padding: 0; font-weight: 700; font-family: math; margin: 0px; align-items: flex-end; font-size: 24px;;" class="mobile_logo_width">C4K STUDIO</h1>
+                        <img src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="mobile_logo_width" style="width: 70px; filter: drop-shadow(1px 1px 0px#222); margin-top: 2px; margin-left: 10px;"/>
+                        <h1 style="padding-bottom: 2px; padding-left: 0; padding-right: 0; padding-top: 0; font-weight: 700; font-family: math; margin: 0px; align-items: flex-end; font-size: 37px; color: rgb(243 92 105);" class="mobile_logo_width">C4K STUDIO</h1>
                     </a>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto" style="width: 100%; justify-content: space-between;">
-                            <li class="nav-item ${home}">
+                            <li class="nav-item ${home}" style="margin-left: 20px;">
                                 <a href="${pageContext.request.contextPath}/News" class="nav-link" style="inline-size: max-content; margin: 0px !important">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item ${movie}">

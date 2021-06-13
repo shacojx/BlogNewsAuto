@@ -237,6 +237,10 @@
         <url-pattern>/News</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>News</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MovieNews</servlet-name>
         <url-pattern>/MovieNews</url-pattern>
     </servlet-mapping>
