@@ -135,7 +135,7 @@
                     </div>
                     <jsp:include page="Most.jsp" />
                 </div>
-                <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
+                <div class="row mx-0 animate-box" data-animate-effect="fadeInUp" style="overflow: hidden;">
                     <div class="row text-center pb-4 pt-4">
 
                         <c:if test = "${end < 2}">

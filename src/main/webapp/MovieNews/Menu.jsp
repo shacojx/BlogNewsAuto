@@ -12,8 +12,8 @@
         <title>C4K</title>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="container">
+        <div class="container-fluid abcd">
+            <div class="container" style="width: 1122px">
                 <div class="row">
                     <div class="col-12 col-md-8 fh5co_padding_menu" style="display: flex ;">
                         <img style="filter: drop-shadow(1px 1px 0px#222); margin-left: 2%;" src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="fh5co_logo_width"/>
@@ -21,7 +21,7 @@
                     </div>
                         <div class="col-12 col-md-4 align-self-center fh5co_mediya_right" style="padding-right: 2%;">
                         
-<!--                        <div class="text-center d-inline-block">
+                       <div class="text-center d-inline-block">
                             <a href="https://www.linkedin.com/" target="_blank" class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div></a>
                         </div>
                         <div class="text-center d-inline-block">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="text-center d-inline-block">
                             <a href="https://fb.com/" target="_blank" class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div></a>
-                        </div>-->
+                        </div>
                         
                         <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
 
@@ -45,9 +45,13 @@
             <div class="container padding_786">
                 <nav class="navbar navbar-toggleable-md navbar-light " style=" padding: 0.5rem 0px;">
                     <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
+                            style="margin-top: 4px!important"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                             aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/News"><img src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="mobile_logo_width"/></a>
+                            <a class="navbar-brand" href="${pageContext.request.contextPath}/News" style="display: inline-flex; align-items: center">
+                        <img src="${pageContext.request.contextPath}/MovieNews/images/C4K.png" alt="C4K STUDIO" class="mobile_logo_width" style="width: 70px"/>
+                        <h1 style="padding: 0; font-weight: 700; font-family: math; margin: 0px; align-items: flex-end; font-size: 24px;;" class="mobile_logo_width">C4K STUDIO</h1>
+                    </a>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto" style="width: 100%; justify-content: space-between;">

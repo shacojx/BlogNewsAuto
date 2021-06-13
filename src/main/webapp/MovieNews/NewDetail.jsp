@@ -31,7 +31,11 @@
         <script src="${pageContext.request.contextPath}/MovieNews/js/modernizr-3.5.0.min.js"></script>
         <style>
             .xxx img {
-                margin-bottom: 2%;
+                margin-bottom: 2%!important;
+            }
+            iframe{
+                width: 100%!important;
+                height: auto!important;
             }
         </style>
     </head>

@@ -24,6 +24,10 @@
 .fh5co_mediya_center {
 	text-align: center;
 }
+
+.abcd{
+    display: none!important;
+}
 .fh5co_logo_width {
 	display: none!important;
 }
@@ -162,6 +166,9 @@
 .fh5co_latest_trading_img > img {
 	height: 240px;
 }
+.abcd{
+    display: none!important;
+}
 .fh5co_img_special_relative {
 	right: 0;
 }
@@ -186,6 +193,9 @@
 @media(min-width:768px) and (max-width:1024px) {
 .fh5co_mediya_center {
 	font-size: 12px;
+}
+.abcd{
+    display: none!important;
 }
 .fh5co_logo_width {
 	display: none;
