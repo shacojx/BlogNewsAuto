@@ -29,7 +29,18 @@
         <link href="${pageContext.request.contextPath}/MovieNews/css/style_1.css" rel="stylesheet" type="text/css"/>
         <!-- Modernizr JS -->
         <script src="${pageContext.request.contextPath}/MovieNews/js/modernizr-3.5.0.min.js"></script>
-        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFZLP1746C"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-MFZLP1746C');
+        </script>
+
     </head>
     <body>
         <c:set var = "home" scope = "request" value = "active"/>
@@ -40,29 +51,29 @@
                     <c:forEach items="${listNew}" var="i" begin="0" end="0">
 
                         <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_suceefh5co_height"><img style="object-fit: cover;" src="${i.cover}" alt="img" class="responsive"/>
-                            <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                            <div class="fh5co_suceefh5co_height_position_absolute_font">
-                                <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}
-                                    </a></div>
-                                <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font"> ${i.title} </a></div>
-                            </div>
-                    </div></a>
-                    </c:forEach>
+                                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                                <div class="fh5co_suceefh5co_height_position_absolute_font">
+                                    <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}
+                                        </a></div>
+                                    <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font"> ${i.title} </a></div>
+                                </div>
+                            </div></a>
+                        </c:forEach>
                 </div>
 
                 <div class="col-md-6">
                     <div class="row">
                         <c:forEach items="${listNew}" var="i" begin="1" end="4">
                             <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                                <div class="fh5co_suceefh5co_height_2"><img style="object-fit: cover;" src="${i.cover}" alt="img" />
-                                    <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                                    <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                                        <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}</a></div>
-                                        <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font_2" > ${i.title} </a></div>
+                                    <div class="fh5co_suceefh5co_height_2"><img style="object-fit: cover;" src="${i.cover}" alt="img" />
+                                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                                            <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;[${i.type_new}] ${i.date}</a></div>
+                                            <div class="" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_good_font_2" > ${i.title} </a></div>
+                                        </div>
                                     </div>
-                                </div>
                                 </div></a>
-                        </c:forEach>
+                            </c:forEach>
                     </div>
                 </div>
             </div>
@@ -76,15 +87,15 @@
                     <c:forEach items="${listTop}" var="i" begin="0" end="3">
                         <div class="item px-2">
                             <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_latest_trading_img_position_relative">
-                                <div class="fh5co_latest_trading_img"><img src="${i.cover}" alt=""
-                                                                           class="fh5co_img_special_relative"/></div>
-                                <div class="fh5co_latest_trading_img_position_absolute"></div>
-                                <div class="fh5co_latest_trading_img_position_absolute_1" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;" >
-                                    <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="text-white"> ${i.title} </a>
-                                    <div class="fh5co_latest_trading_date_and_name_color"> [${i.type}] ${i.date}</div>
-                                </div>
+                                    <div class="fh5co_latest_trading_img"><img src="${i.cover}" alt=""
+                                                                               class="fh5co_img_special_relative"/></div>
+                                    <div class="fh5co_latest_trading_img_position_absolute"></div>
+                                    <div class="fh5co_latest_trading_img_position_absolute_1" style="white-space: nowrap; width: 90%; overflow: hidden; text-overflow: ellipsis;" >
+                                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="text-white"> ${i.title} </a>
+                                        <div class="fh5co_latest_trading_date_and_name_color"> [${i.type}] ${i.date}</div>
+                                    </div>
                                 </div></a>
-                            </div>
+                        </div>
                     </c:forEach>
                 </div>
             </div>
@@ -98,12 +109,12 @@
                     <c:forEach items="${listNew}" var="i" begin="5" end="7">
                         <div class="item px-2">
                             <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_hover_news_img">
-                                <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
-                                <div>
-                                    <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
-                                    <div class="c_g"><i class="fa fa-clock-o"></i> [${i.type_new}] ${i.date}</div>
-                                </div>
-                            </div></a>
+                                    <div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div>
+                                    <div>
+                                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
+                                        <div class="c_g"><i class="fa fa-clock-o"></i> [${i.type_new}] ${i.date}</div>
+                                    </div>
+                                </div></a>
                         </div>
                     </c:forEach>
 

@@ -64,9 +64,12 @@ public class NewDetail extends HttpServlet {
                     java.util.Date date1 = new java.util.Date();
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String startDate = sdf1.format(date1);
-                    Visiter vis = new Visiter(userIpAddress, location, startDate, id, ne.getType_new());
+
                     VisiterDAO vidao = new VisiterDAO();
-                    vidao.insert(vis);
+                    if (location.contains("null") == false) {
+                        Visiter vis = new Visiter(userIpAddress, location, startDate, id, ne.getType_new());
+                        vidao.insert(vis);
+                    }
 
                     GetTopNews gettop = new GetTopNews();
                     ArrayList<ListNewtmp> listlii = gettop.RankingIP();

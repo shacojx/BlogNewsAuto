@@ -52,9 +52,13 @@ public class News extends HttpServlet {
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
             String id_news = "trangchu_0";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
+             
             VisiterDAO vidao = new VisiterDAO();
-            vidao.insert(vis);
+            if (location.contains("null") == false) {
+                Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
+                vidao.insert(vis);
+            }
+            
             NewDAO ndao = new NewDAO();
             int count = ndao.count();
             int endPage = count / 12;

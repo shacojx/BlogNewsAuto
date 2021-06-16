@@ -29,6 +29,17 @@
         <link href="${pageContext.request.contextPath}/MovieNews/css/style_1.css" rel="stylesheet" type="text/css"/>
         <!-- Modernizr JS -->
         <script src="${pageContext.request.contextPath}/MovieNews/js/modernizr-3.5.0.min.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFZLP1746C"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-MFZLP1746C');
+        </script>
         <style>
             .xxx img {
                 margin-bottom: 2%!important;

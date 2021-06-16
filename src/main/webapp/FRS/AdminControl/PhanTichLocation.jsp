@@ -3,6 +3,7 @@
     Created on : Oct 25, 2020, 1:52:14 PM
     Author     : shacojx
 --%>
+<%@page import="Entity.Visit"%>
 <%@page import="News.GetNuoc"%>
 <%@page import="EntityNews.ListNewtmp"%>
 <%@page import="News.GetTopNews"%>
@@ -66,7 +67,7 @@
 
             <%
                 for (String pupu : list_nc) {
-                    out.print("['"+getnc.QuocGia(pupu)+"', "+vidao.countByQuocGia(pupu)+"],");
+                    out.print("['" + getnc.QuocGia(pupu) + "', " + vidao.countByQuocGia(pupu) + "],");
                 }
             %>
                 ]);
@@ -171,23 +172,25 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%                                                    if (list_nc.size() >= 5) {
+                                                <%                                                    ArrayList<Visit> list_final = getnc.List_qg();
+                                                    if (list_final.size() >= 5) {
                                                         for (int i = 0; i < 5; i++) {
                                                             out.println("<tr>");
-                                                            out.print("<td><span>" + getnc.QuocGia(list_nc.get(i)) + "</span>");
+                                                            out.print("<td><span>" + list_final.get(i).getLoc() + "</span>");
                                                             out.print("<br/><small></small></td>");
-                                                            out.print("<td class=\"text-center\"> <span>" + vidao.countByQuocGia(list_nc.get(i)) + "</span> </td>");
+                                                            out.print("<td class=\"text-center\"> <span>" + list_final.get(i).getView() + "</span> </td>");
                                                             out.print(" </tr>");
                                                         }
                                                     } else {
-                                                        for (int i = 0; i < list_nc.size(); i++) {
+                                                        for (int i = 0; i < list_final.size(); i++) {
                                                             out.println("<tr>");
-                                                            out.print("<td><span>" + getnc.QuocGia(list_nc.get(i)) + "</span>");
+                                                            out.print("<td><span>" + list_final.get(i).getLoc() + "</span>");
                                                             out.print("<br/><small></small></td>");
-                                                            out.print("<td class=\"text-center\"> <span>" + vidao.countByQuocGia(list_nc.get(i)) + "</span> </td>");
+                                                            out.print("<td class=\"text-center\"> <span>" + list_final.get(i).getView() + "</span> </td>");
                                                             out.print(" </tr>");
                                                         }
                                                     }
+
 
                                                 %>
 
@@ -205,7 +208,7 @@
                             <div class="col-12">
                                 <div class="card card-info">
                                     <div class="card-header">
-                                        <h3 class="card-title">Thống Kê Lượt Xem Các Quốc Gia</h3>
+                                        <h3 class="card-title">Thống Kê Lượt Xem Các Thành Phố</h3>
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -218,7 +221,7 @@
                                                 <tr>
 
                                                     <th>
-                                                        Quốc Gia
+                                                        Thành Phố
                                                     </th>
 
                                                     <th class="text-center">
@@ -228,11 +231,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%                                                    for (String nc : list_nc) {
+                                                <%                                                    ArrayList<Visit> list_top_quocgia = getnc.RankingIP();
+
+                                                    for (Visit nc : list_top_quocgia) {
                                                         out.println("<tr>");
-                                                        out.print("<td><span>" + getnc.QuocGia(nc) + "</span>");
+                                                        out.print("<td><span>" + nc.getLoc() + "</span>");
                                                         out.print("<br/><small></small></td>");
-                                                        out.print("<td class=\"text-center\"> <span>" + vidao.countByQuocGia(nc) + "</span> </td>");
+                                                        out.print("<td class=\"text-center\"> <span>" + nc.getView() + "</span> </td>");
                                                         out.print(" </tr>");
                                                     }
 

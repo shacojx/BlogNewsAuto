@@ -51,10 +51,13 @@ public class Netflix extends HttpServlet {
             java.util.Date date1 = new java.util.Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
-            String id_news = "trangchu_6";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Netflix");
+            String id_news = "trangchu_6";    
             VisiterDAO vidao = new VisiterDAO();
-            vidao.insert(vis);
+            if (location.contains("null") == false) {
+                Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Netflix");
+                vidao.insert(vis);
+            }
+            
             NewDAO ndao = new NewDAO();
             int count = ndao.countByType("Netflix");
             int endPage = count / 4;

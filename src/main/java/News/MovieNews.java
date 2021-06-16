@@ -51,10 +51,13 @@ public class MovieNews extends HttpServlet {
             java.util.Date date1 = new java.util.Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String startDate = sdf1.format(date1);
-            String id_news = "trangchu_1";
-            Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
+            String id_news = "trangchu_1";  
             VisiterDAO vidao = new VisiterDAO();
-            vidao.insert(vis);
+            if (location.contains("null") == false) {
+                Visiter vis = new Visiter(userIpAddress, location, startDate, id_news, "Movie News");
+                vidao.insert(vis);
+            }
+            
             NewDAO ndao = new NewDAO();
             int count = ndao.countByType("Movie News");
             int endPage = count / 4;

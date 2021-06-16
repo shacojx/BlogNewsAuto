@@ -6,9 +6,12 @@
 package News;
 
 import Controller.XuLy.RemoveDuplicate;
+import Entity.Visit;
 import Model.VisiterDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,8 +20,8 @@ import java.util.logging.Logger;
  * @author ShacoJX
  */
 public class GetNuoc {
-    
-    public ArrayList<String> list_quocgia(){
+
+    public ArrayList<String> list_quocgia() {
         try {
             VisiterDAO vidao = new VisiterDAO();
             RemoveDuplicate rem = new RemoveDuplicate();
@@ -30,7 +33,71 @@ public class GetNuoc {
         }
         return null;
     }
+
+    public ArrayList<Visit> RankingIP() {
+        try {
+
+            VisiterDAO vidao = new VisiterDAO();
+            ArrayList<Visit> list_nuoc_rank = new ArrayList<>();
+            ArrayList<String> quocgia = list_quocgia();
+            for (String xlxx : quocgia) {
+                int view = vidao.countByQuocGia(xlxx);
+                String fullqg = QuocGia(xlxx);
+                Visit vv = new Visit(fullqg, view);
+                list_nuoc_rank.add(vv);
+            }
+
+            Collections.sort(list_nuoc_rank, new Comparator<Visit>() {
+                @Override
+                public int compare(Visit t, Visit t1) {
+                    return t1.getView() - t.getView();
+                }
+            });
+
+            return list_nuoc_rank;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GetTopNews.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<Visit> List_qg() {
+        ArrayList<String> list_datnuoc = new ArrayList<>();
+        ArrayList<Visit> list_tp = RankingIP();
+        for (Visit tp : list_tp) {
+            String datnuoc = tp.getLoc().split("-")[1].trim();
+            list_datnuoc.add(datnuoc);
+        }
+        RemoveDuplicate rem = new RemoveDuplicate();
+        ArrayList<String> list_datnuoc2 = rem.removeDuplicates(list_datnuoc);
+        ArrayList<Visit> list_final = new ArrayList<>();
+
+        for(String dn : list_datnuoc2){
+            int view = 0;
+            for(Visit x : list_tp){
+                if(x.getLoc().contains(dn)){
+                    view = view + x.getView();
+                }
+            }
+            Visit vivi = new Visit(dn, view);
+            list_final.add(vivi);
+        }
+        
+        Collections.sort(list_final, new Comparator<Visit>() {
+                @Override
+                public int compare(Visit t, Visit t1) {
+                    return t1.getView() - t.getView();
+                }
+            });
+        
+        return list_final;
+    }
     
+    
+    
+    
+
     public String QuocGia(String loca) {
         String[] loc = loca.split("-");
         String quocgia = "";
@@ -514,11 +581,11 @@ public class GetNuoc {
             quocgia = "ZAMBIA";
         } else if (loc[1].trim().equalsIgnoreCase("ZW")) {
             quocgia = "ZIMBABWE";
-        }else{
+        } else {
             quocgia = "unknow";
         }
-        return loc[0].trim() +" - "+quocgia;
+        return loc[0].trim() + " - " + quocgia;
 
     }
-    
+
 }
