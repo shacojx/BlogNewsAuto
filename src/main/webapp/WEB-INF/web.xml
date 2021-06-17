@@ -156,6 +156,18 @@
         <servlet-name>NotFound</servlet-name>
         <servlet-class>News.NotFound</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuanLyUser</servlet-name>
+        <servlet-class>ThongKe.QuanLyUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAcc</servlet-name>
+        <servlet-class>ThongKe.DeleteAcc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPass</servlet-name>
+        <servlet-class>ThongKe.ResetPass</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -238,7 +250,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>News</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MovieNews</servlet-name>
@@ -291,6 +303,18 @@
     <servlet-mapping>
         <servlet-name>NotFound</servlet-name>
         <url-pattern>/NotFound</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuanLyUser</servlet-name>
+        <url-pattern>/QuanLyUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAcc</servlet-name>
+        <url-pattern>/DeleteAcc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPass</servlet-name>
+        <url-pattern>/ResetPass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

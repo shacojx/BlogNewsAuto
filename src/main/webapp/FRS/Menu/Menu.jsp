@@ -41,7 +41,7 @@
                 a = loginD.checkLogin(aes.decrypt(user), aes.decrypt(pass));
                 ulogin = aes.decrypt(user);
             }
-            
+
 
         %>
         <!-- Navbar -->
@@ -54,7 +54,7 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="${pageContext.request.contextPath}/Profile" class="nav-link">Home</a>
                 </li>
-                
+
             </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -94,13 +94,13 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                       
-                       
+
+
                         <li class="nav-item has-treeview ${admin1}">
                             <a href="#" class="nav-link ${admin2}">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
-                                    Admin Control
+                                    Admin Analysis
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -108,44 +108,69 @@
                                 <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTich.jsp" class="nav-link ${admin3}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Analysis Dashboard</p>
+                                        <p>Dashboard</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTich2.jsp" class="nav-link ${admin4}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Analysis Views</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/PhanTichLocation.jsp" class="nav-link ${admin5}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Analysis Location</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/ViewUserOnline.jsp" class="nav-link ${admin6}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>View User Online</p>
+                                        <p>User Online</p>
                                     </a>
                                 </li>
-                                
+
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item has-treeview ${adminx}">
+                            <a href="#" class="nav-link ${adminxx}">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                    User Management 
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+
+                                <li class="nav-item">
+                                    <a href="${pageContext.request.contextPath}/QuanLyUser" class="nav-link ${admin7}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý người dùng</p>
+                                    </a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a href="${pageContext.request.contextPath}/FRS/AdminControl/AddUser.jsp" class="nav-link ${adduser}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm người dùng</p>
                                     </a>
                                 </li>
-                   
-                                
+
+
+
+
                             </ul>
                         </li>
-                        
+
+
                         <li class="nav-header">Quản Lý Tin Tức</li>
-                            
+
                         <li class="nav-item">
                             <a href="${pageContext.request.contextPath}/FRS/ManagerNews/UpNews.jsp" class="nav-link ${upnews}">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -155,7 +180,7 @@
                                 </p>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="${pageContext.request.contextPath}/ListNews" class="nav-link ${listnews}">
                                 <i class="nav-icon far fa-image"></i>
@@ -164,8 +189,8 @@
                                 </p>
                             </a>
                         </li>
-                        
-                        
+
+
 
                         <li class="nav-header">Tin Tức</li>
                         <li class="nav-item">

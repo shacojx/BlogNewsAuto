@@ -87,7 +87,7 @@ public class AccDAO {
 
         try {
 
-            String query = "SELECT * FROM `FRS`.`user` WHERE id=?;";
+            String query = "SELECT * FROM `blogauto`.`user` WHERE id=?;";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setInt(1, id);
@@ -105,6 +105,52 @@ public class AccDAO {
             conn.close();
         }
         return null;
+    }
+    
+    public ArrayList<Account> getAccAll() throws SQLException {
+
+        try {
+            ArrayList<Account> listacc = new ArrayList<>();
+
+            String query = "SELECT * FROM `blogauto`.`user`;";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account acc = new Account(rs.getString(1), rs.getString(2), rs.getString(3));
+                listacc.add(acc);
+            }
+            return listacc;
+
+        } catch (Exception ex) {
+            Logger.getLogger(AccDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
+            ps.close();
+            conn.close();
+        }
+        return null;
+    }
+    
+     public void DeleteAccByID(String username) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM `blogauto`.`user` WHERE `username`=?;";
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        ps.setString(1, username);
+        ps.executeUpdate();
+        ps.close();
+        conn.close();
+    }
+     
+     public void ResetAccByID(String username, String pass) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE `blogauto`.`user` SET `password` = ? WHERE `username`=?;";
+        conn = new DBContext().getConnection();
+        ps = conn.prepareStatement(query);
+        ps.setString(1, pass);
+        ps.setString(2, username);
+        ps.executeUpdate();
+        ps.close();
+        conn.close();
     }
 
 }

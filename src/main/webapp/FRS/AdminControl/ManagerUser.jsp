@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index.jsp
-    Created on : Oct 25, 2020, 1:52:14 PM
-    Author     : shacojx
+    Document   : ManagerUser
+    Created on : Jun 17, 2021, 10:28:37 AM
+    Author     : ShacoJX
 --%>
 
 <%@page import="Entity.Account"%>
@@ -12,7 +12,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="icon" href="${pageContext.request.contextPath}/MovieNews/images/ic4k.png" type="image/gif" sizes="32x32">
@@ -40,7 +39,6 @@
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <%
@@ -67,12 +65,10 @@
                 ulogin = aes.decrypt(user);
 
             }
-
-
         %>
         <c:set var = "adminx" scope = "request" value = "menu-open"/>
         <c:set var = "adminxx" scope = "request" value = "active"/>
-        <c:set var = "adduser" scope = "request" value = "active"/>
+        <c:set var = "admin7" scope = "request" value = "active"/>
         <div class="wrapper">
 
             <jsp:include page="../Menu/Menu.jsp" />
@@ -89,7 +85,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/FRS/world.jsp">Home</a></li>
-                                    <li class="breadcrumb-item active">Thêm Người Dùng</li>
+                                    <li class="breadcrumb-item active">Danh sách người dùng</li>
                                 </ol>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
@@ -103,52 +99,77 @@
                         <!-- Small boxes (Stat box) -->
 
                         <div class="row">
+                            ${mess}
+                        </div>
+
+                        <!-- /.row -->
+
+                        <div class="row">
                             <div class="col-12">
-                                <!-- general form elements -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Thêm Người Dùng</h3>
-                                    </div>
-                                    <!-- /.card-header -->
+                                        <h3 class="card-title">Danh sách người dùng</h3>
 
-
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                        </div>
-                                        <div class="col-md-10">
-                                            ${mess}
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fas fa-minus"></i></button>
                                         </div>
                                     </div>
-                                    <!-- form start -->
-                                    <form role="form" action="${pageContext.request.contextPath}/AddAccount" method="post">
-                                        <div class="card-body">
+                                    <div class="card-body p-0">
+                                        <table class="table table-striped projects">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 1%">
+                                                        #
+                                                    </th>
 
+                                                    <th style="width: 20%">
+                                                        Full Name
+                                                    </th>
+                                                    <th style="width: 20%">
+                                                        Username
+                                                    </th>
+                                                    <th style="width: 20%">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${listacc}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            #
+                                                        </td>
 
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Họ Và Tên</label>
-                                                <input type="text" name="fullname" class="form-control" id="exampleInputFile">
-                                            </div>
+                                                        <td>
+                                                            <ul class="list-inline">
+                                                                <span>${i.fullname}</span>
+                                                                
+                                                            </ul>
+                                                        </td>
+                                                        <td class="project_progress">
+                                                            <span>${i.username}</span>
+                                                        </td>
 
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Tài Khoản Đăng Nhập</label>
-                                                <input name="username" type="text" class="form-control" id="exampleInputFile">
-                                            </div>
+                                                        <td class="project-actions text-right">
+                                                            <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/ResetPass?uname=${i.username}">
+                                                                <i class="fas fa-folder">
+                                                                </i>
+                                                                Reset Password (c4k123!@#)
+                                                            </a>                   
+                                                            <a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/DeleteAcc?uname=${i.username}">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                                Delete Username
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
 
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Mật Khẩu Đăng Nhập</label>
-                                                <input name="password" type="password" class="form-control" id="exampleInputFile" placeholder="Mật khẩu tối thiểu 8 ký tự, bao gồm chữ hoa, thường, số và ký tự đặc biệt">
-                                            </div>
-                                        </div>
-                                        <!-- /.card-body -->
-
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary">Thêm User</button>
-                                        </div>
-                                    </form>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <!-- /.card -->
                             </div>
-
                         </div>
 
 
@@ -205,4 +226,3 @@
         <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/demo.js"></script>
     </body>
 </html>
-
