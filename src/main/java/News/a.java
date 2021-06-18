@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Blog;
+package News;
 
-import Controller.XuLy.AES;
-import Controller.XuLy.GenID;
-import Entity.Account;
+import Controller.XuLy.GeoIP;
+import EntityNews.ListNewtmp;
+import EntityNews.ListNewtmp2;
 import EntityNews.New;
-import Model.LoginDAO;
+import EntityNews.Visiter;
 import Model.NewDAO;
+import Model.VisiterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShacoJX
  */
-public class UpNews extends HttpServlet {
+public class a extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,62 +42,52 @@ public class UpNews extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Cookie[] listCookie = request.getCookies();
-            String user = "";
-            String pass = "";
-            for (Cookie o : listCookie) {
-                if (o.getName().equals("mu")) {
-                    user = o.getValue();
-                }
-                if (o.getName().equals("sa")) {
-                    pass = o.getValue();
-                }
-            }
-            LoginDAO loginD = new LoginDAO();
-            AES aes = new AES();
-            Account a = null;
-            if (loginD.checkLogin(aes.decrypt(user), aes.decrypt(pass)) == null) {
-                response.sendRedirect("/Login/Login.jsp");
+            String id = request.getParameter("a");
+            String path = request.getContextPath();
+            if (id == null) {
+                response.sendRedirect(path + "/NotFound");
             } else {
-                String title = request.getParameter("title");
-                String content = request.getParameter("content");
-                String type_new = request.getParameter("type_new");
-                String cover = request.getParameter("cover");
-                String des = "...";
-                content = content.replaceAll("<script>", "%3Cscript%3E");
-                content = content.replaceAll("</script>", "%3C/script%3E");
-                content = content.replaceAll("onerror", "");
-                content = content.replaceAll("<script", "%3Cscript");
-                content = content.replace("<img", "<img class=\"img-responsive\" ");
-                if (title.length() == 0 || content.length() == 0 
-                        || type_new.length() == 0 || cover.length() == 0) {
-                    request.setAttribute("mess", "<p style=\"color: red;\">Thêm Bài Viết Thất Bại, Không được bỏ trống các trường bắt buộc (có icon khóa)</p>");
-                    request.getRequestDispatcher("/FRS/ManagerNews/UpNews.jsp").forward(request, response);
+                NewDAO nedao = new NewDAO();
+                New ne = nedao.getNewById(id);
+                if (ne == null) {
+                    response.sendRedirect(path + "/NotFound");
                 } else {
-                    GenID gen = new GenID();
-                    
+                    String nd = ne.getContent();
+                    nd = nd.replaceAll("shacojx", "");
+                    ne.setContent(nd);
+                    GeoIP geo = new GeoIP();
+                    String userIpAddress = request.getRemoteAddr();
+                    String location = geo.getLocation(userIpAddress);
                     java.util.Date date1 = new java.util.Date();
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String startDate = sdf1.format(date1);
-                    String id = "";
-                    NewDAO nedao = new NewDAO();
-                    New nx = new New();
-                    do {                        
-                        id = gen.genStr();
-                        nx = nedao.getNewById(id);
-                       
-                    } while (nx != null);
-                    
-                    New ne = new New(id, title, des, content, startDate, type_new, cover);
-                    nedao.insertNews(ne);
-                    request.setAttribute("mess", "<p style=\"color: #3ac33ad1;\">Thêm Bài Viết Thành Công</p>");
-                    request.getRequestDispatcher("/FRS/ManagerNews/UpNews.jsp").forward(request, response);
+
+                    VisiterDAO vidao = new VisiterDAO();
+                    if (location.contains("null") == false) {
+                        Visiter vis = new Visiter(userIpAddress, location, startDate, id, ne.getType_new());
+                        vidao.insert(vis);
+                    }
+
+                    GetTopNews gettop = new GetTopNews();
+                    ArrayList<ListNewtmp> listlii = gettop.RankingIP();
+                    ArrayList<ListNewtmp2> listliii = new ArrayList<>();
+                    for (ListNewtmp lol : listlii) {
+                        String cove = nedao.getCoverById(lol.getId());
+                        ListNewtmp2 lolo = new ListNewtmp2(lol.getId(), lol.getTitle(), lol.getType(), lol.getDate(), lol.getView(), cove);
+                        listliii.add(lolo);
+                    }
+
+                    ArrayList<New> listPaging = nedao.getPaggingAll(1);
+                    request.setAttribute("listNew", listPaging);
+                    request.setAttribute("listTop", listliii);
+                    request.setAttribute("Ne", ne);
+                    request.getRequestDispatcher("/MovieNews/NewDetail.jsp").forward(request, response);
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UpNews.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(a.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

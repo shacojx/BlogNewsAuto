@@ -55,13 +55,13 @@
                             <div class="row pb-4">
                                 <div class="col-md-5">
                                     <div class="fh5co_hover_news_img">
-                                        <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
+                                        <a href="${pageContext.request.contextPath}/a?a=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
                                         <div></div>
                                     </div>
                                 </div>
                                 <div class="col-md-7 animate-box">
-                                    <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_magna py-2"> ${i.title}</a><br>
-                                    <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="fh5co_mini_time py-3"> [${i.type_new}] ${i.date}</a>
+                                    <a href="${pageContext.request.contextPath}/a?a=${i.id}" class="fh5co_magna py-2"> ${i.title}</a><br>
+                                    <a href="${pageContext.request.contextPath}/a?a=${i.id}" class="fh5co_mini_time py-3"> [${i.type_new}] ${i.date}</a>
                                     <div class="fh5co_consectetur">
                                     </div>
                                 </div>
@@ -147,9 +147,9 @@
                     <c:forEach items="${listTop}" var="i" begin="0" end="3">
                         <div class="item px-2">
                             <div class="fh5co_hover_news_img">
-                                <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
+                                <a href="${pageContext.request.contextPath}/a?a=${i.id}"><div class="fh5co_news_img"><img src="${i.cover}" alt=""/></div></a>
                                 <div>
-                                    <a href="${pageContext.request.contextPath}/NewDetail?id=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
+                                    <a href="${pageContext.request.contextPath}/a?a=${i.id}" class="d-block fh5co_small_post_heading"><span class="">${i.title}</span></a>
                                     <div class="c_g"><i class="fa fa-clock-o"></i>[${i.type}] ${i.date}</div>
                                 </div>
                             </div>

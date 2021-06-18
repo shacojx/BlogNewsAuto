@@ -168,6 +168,10 @@
         <servlet-name>ResetPass</servlet-name>
         <servlet-class>ThongKe.ResetPass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>a</servlet-name>
+        <servlet-class>News.a</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authentication</servlet-name>
         <url-pattern>/Authen</url-pattern>
@@ -315,6 +319,10 @@
     <servlet-mapping>
         <servlet-name>ResetPass</servlet-name>
         <url-pattern>/ResetPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>a</servlet-name>
+        <url-pattern>/a</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
