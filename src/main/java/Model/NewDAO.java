@@ -76,7 +76,7 @@ public class NewDAO {
     
     public ArrayList<New> getAll() throws SQLException {
         try {
-            String query = "SELECT * FROM  `blogauto`.`news`;";
+            String query = "SELECT * FROM  `blogauto`.`news` order by `date` desc limit 12;";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();

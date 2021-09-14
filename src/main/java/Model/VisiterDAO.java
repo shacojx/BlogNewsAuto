@@ -51,22 +51,22 @@ public class VisiterDAO {
     }
     
     public int countByNews(String id_news) throws SQLException {
-        try {
-            String query = "SELECT COUNT(*) FROM `blogauto`.`visiter` where `id_news`=?;";
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, id_news);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            rs.close();
-            ps.close();
-            conn.close();
-        }
+//        try {
+//            String query = "SELECT COUNT(*) FROM `blogauto`.`visiter` where `id_news`=?;";
+//            conn = new DBContext().getConnection();
+//            ps = conn.prepareStatement(query);
+//            ps.setString(1, id_news);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                return rs.getInt(1);
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(NewDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            rs.close();
+//            ps.close();
+//            conn.close();
+//        }
         return 0;
     }
     
