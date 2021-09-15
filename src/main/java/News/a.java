@@ -66,6 +66,8 @@ public class a extends HttpServlet {
                             nd_final = nd_final+" \n";
                         }else if(xz.contains("</blockquote>")){
                             nd_final = nd_final+" \n";
+                        }else if(xz.contains("figure")){
+                            nd_final = nd_final+" \n";
                         }else if(xz.contains("<p>") && xz.contains("</p>")){
                            nd_final = nd_final+"\n"+xz;
                         }else if(xz.contains("iframe")){
