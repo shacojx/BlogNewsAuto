@@ -56,7 +56,28 @@ public class a extends HttpServlet {
                 } else {
                     String nd = ne.getContent();
                     nd = nd.replaceAll("shacojx", "");
-                    ne.setContent(nd);
+                    nd = nd.replaceAll("'};", "");
+                    String[] nd_spit = nd.split("\n");
+                    String nd_final = "";
+                    for(String xz : nd_spit){
+                        if(xz.contains("window.")){
+                            nd_final = nd_final+" \n";
+                        }else if(xz.contains("embedded") || xz.contains("megaphone")){
+                            nd_final = nd_final+" \n";
+                        }else if(xz.contains("</blockquote>")){
+                            nd_final = nd_final+" \n";
+                        }else if(xz.contains("<p>") && xz.contains("</p>")){
+                           nd_final = nd_final+"\n"+xz;
+                        }else if(xz.contains("iframe")){
+                             nd_final = nd_final+"\n"+xz;
+                        }else if(xz.contains("<img")){
+                            nd_final = nd_final+"\n"+xz;
+                        }
+                        else{
+                            nd_final = nd_final+"\n"+xz;
+                        }
+                    }
+                    ne.setContent(nd_final);
                     GeoIP geo = new GeoIP();
                     String userIpAddress = request.getRemoteAddr();
                     String location = geo.getLocation(userIpAddress);

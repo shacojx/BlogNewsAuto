@@ -47,6 +47,7 @@ public class News extends HttpServlet {
             GeoIP geo = new GeoIP();
             String userIpAddress = request.getRemoteAddr();
             String location = geo.getLocation(userIpAddress);
+//String location = "xxx";
 //            System.out.println(location);
             java.util.Date date1 = new java.util.Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
